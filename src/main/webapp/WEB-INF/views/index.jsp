@@ -10,6 +10,21 @@
     <title>INDEX</title>
 </head>
 <body>
-Index Page
+<div class="wrap">
+    <header>
+        <h1>INDEX</h1>
+    </header>
+    <main>
+        <div id="btn">
+            <input type="button" id="join" value="join" onclick="location.href='/join'">
+            <input type="button" id="login" value="login" onclick="location.href='/login'">
+            <input type="button" id="userMyPage" value="userMyPage" onclick="location.href='/userMyPage'">
+        </div>
+    </main>
+    <nav></nav>
+    <aside></aside>
+    <footer></footer>
+
+</div>
 </body>
 </html>
