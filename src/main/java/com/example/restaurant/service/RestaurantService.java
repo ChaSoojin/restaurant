@@ -6,6 +6,7 @@ import com.example.restaurant.domain.RestaurantRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,17 +57,26 @@ public class RestaurantService {
         return true;
     }
 
+    @Transactional
+    public boolean deleteOwner(String restaurant_id){
+        Restaurant r = getRestaurantById(restaurant_id);
+        RestaurantRequestDto dto = new RestaurantRequestDto(r.getRestaurant_id(),".",r.getRestaurant_name(),r.getPhone(),r.getAddress(),r.getX(),r.getY());
+        r.update(dto);
+        return true;
+    }
+
     // (user_id에 해당하는) 레스토랑 전부 다 받아서 테이블에 뿌리기
-    public List<Restaurant> getRestaurants(String user_id){
-        List<Restaurant> list = null;
+    public List<Restaurant> getRestaurants(String user_id, HttpServletRequest request){
+        List<Restaurant> list = repo.findAll();
         List<Restaurant> target = new ArrayList<Restaurant>();
-        list = repo.findAll();
 
         for(Restaurant r : list){
-            if(r.getUser_id() != null && r.getUser_id().equals(user_id)){
+            if(r.getUser_id().equals(user_id)){
                 target.add(r);
+                System.out.println(r.getRestaurant_name() + " : " + r.getUser_id());
             }
         }
+        request.setAttribute("list", target);
         return target;
     }
 }

@@ -58,7 +58,7 @@
                     getList += "</tr>"
 
                     // 식당 데이터 save
-                    saveData(data.documents[i]);
+                    if(){saveData(data.documents[i]);} //   중복 아닐 경우만 저장
                 }
                 getList += "</table>"
 

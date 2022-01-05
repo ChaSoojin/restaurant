@@ -132,11 +132,14 @@ public class MainController {
 //        String user_id = request.getParameter("user_id");
         return controller.getRestaurantList(request);
     }
+
+    // 레스토랑 검색하는 페이지(test)로 이동
     @GetMapping("/searchPage")
     public String ownerSearch(){ return "user/test"; }
 
     //---- 새로 추가됨 ----
-    @GetMapping("/settingRestaurant") // 검색페이지 -> 상세페이지
+    // 내 레스토랑 추가히기 / 상세페이지
+    @GetMapping("/settingRestaurant")
     public String settingRestaurant(@RequestParam String restaurant_id, HttpServletRequest request){
         System.out.println("식당아이디: " + restaurant_id);
         System.out.println("요청 : " + request);
@@ -144,6 +147,7 @@ public class MainController {
         return controller.settingRestaurantForm(restaurant_id, request);
     }
 
+    // (test에서) 내 가게로 등록하기
     @GetMapping("/setMyRestaurant")
     public String setMyRestaurant(HttpServletRequest request){
 //        String restaurant_id = request.getParameter("restaurant_id");
@@ -153,10 +157,23 @@ public class MainController {
         return controller.setMyRestaurant(request);
     }
 
+    // 각 레스토랑 별 예약내역 보러 가기
     @GetMapping("/ownerReserveCheck")
     public String ownerReserveCheck(HttpServletRequest request){
         String restaurant_id = request.getParameter("restaurant_id");
         System.out.println("restaurant_id:"+restaurant_id);
         return reserveController.ownerReserveCheck(request);
     }
+
+    // 레스토랑에서 사장 user_id 삭제
+    @GetMapping("/deleteRestaurantByUserid")
+    public String deleteRestaurantByUserid(HttpServletRequest request){
+        return controller.deleteRestaurantByUserid(request);
+    }
+
+//    // 오너 페이지 안 내 가게 -> 지도 보기
+//    @GetMapping("/ownerMapView")
+//    public String ownerMapView(HttpServletRequest request){
+//        return "user/ownerMapViewPage";
+//    }
 }
