@@ -110,7 +110,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="#">마이페이지</a>
+                                <li class="rd-nav-item"><a class="rd-nav-link" href="#">마이페이지이지롱</a>
                                     <ul class="rd-menu rd-navbar-dropdown">
                                         <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="/userMyPage">마이페이지</a>
                                         </li>
