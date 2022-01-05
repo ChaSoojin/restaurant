@@ -16,8 +16,8 @@
 
 <%
     //String log = (String)session.getAttribute("id");
-//    String id = "banana";
-    String id = "brown";
+    String id = "banana";
+//    String id = "brown";
     session.setAttribute("log", id);
 %>
 

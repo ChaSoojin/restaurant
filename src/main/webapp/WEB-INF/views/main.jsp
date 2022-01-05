@@ -25,7 +25,8 @@
                                 <div class="button-outer"><a class="button button-lg button-primary button-winona" href="<c:url value='/restaurantSearch'/>">맛집검색</a></div>
                             </div>
                             <div class="col-lg-6 position-static">
-                                <div class="floating-image" style="background-image: url(https://media.istockphoto.com/vectors/kawaii-food-vector-emoticon-japanese-sushi-character-and-emoji-roll-vector-id969402478);"></div>
+                                <c:url var="imagePath2" value="/images/bg-image-2.jpg"/>
+                                <div class="floating-image" style="background-image: url(${imagePath2});"></div>
                             </div>
                         </div>
                     </div>
@@ -42,7 +43,8 @@
                                 <div class="button-outer"><a class="button button-lg button-primary button-winona" href="<c:url value='/list'/>">Free Review</a></div>
                             </div>
                             <div class="col-lg-6 position-static">
-                                <div class="floating-image" style="background-image: url(https://media.istockphoto.com/vectors/kawaii-food-vector-emoticon-japanese-sushi-character-and-emoji-roll-vector-id969402478);"></div>
+                                <c:url var="imagePath3" value="/images/bg-image-3.jpg"/>
+                                <div class="floating-image" style="background-image: url(${imagePath3});"></div>
                             </div>
                         </div>
                     </div>
