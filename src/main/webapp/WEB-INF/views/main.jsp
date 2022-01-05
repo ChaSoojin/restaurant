@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<c:import url="layout/header.jsp"/>
+<c:import url="/WEB-INF/views/layout/header.jsp"/>
 
 <!doctype html>
 <html lang="en">
@@ -39,7 +39,7 @@
                         <div class="row row-30">
                             <div class="col-lg-6 text-center text-lg-left">
                                 <h1><span class="font-weight-light"><span></span></span><span class="font-weight-bold"><span>리뷰보러가기</span></span></h1>
-                                <div class="button-outer"><a class="button button-lg button-primary button-winona" href="<c:url value='#'/>">Free Review</a></div>
+                                <div class="button-outer"><a class="button button-lg button-primary button-winona" href="<c:url value='/list'/>">Free Review</a></div>
                             </div>
                             <div class="col-lg-6 position-static">
                                 <div class="floating-image" style="background-image: url(https://media.istockphoto.com/vectors/kawaii-food-vector-emoticon-japanese-sushi-character-and-emoji-roll-vector-id969402478);"></div>
@@ -57,4 +57,4 @@
 </body>
 </html>
 
-<c:import url="layout/footer.jsp"/>
+<c:import url="/WEB-INF/views/layout/footer.jsp"/>

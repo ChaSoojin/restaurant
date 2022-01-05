@@ -10,11 +10,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="script/review.js"></script>
     <title>Review List</title>
 </head>
 <body>
-<input type="button" value="리뷰작성" onclick="location.href='writePage'">
 <h1>리뷰 게시판</h1>
 
 <div class="wrap">

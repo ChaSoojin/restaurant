@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,11 +22,12 @@ public class ReviewController {
 
     // create
     public String addReview(@RequestParam Map<String,String> formdata, HttpServletRequest request){
-//        String id = request.getParameter("log");
-        String id = "apple";
-        String restaurant_id = "1234";
+        HttpSession session = request.getSession();
+        String id = (String)session.getAttribute("log");
+
         String title = (String) formdata.get("title");
         String content = (String) formdata.get("content");
+        String restaurant_id = (String) formdata.get("restaurant_id");
 
         System.out.println(id + ", " + restaurant_id + ", " + title + ", " + content);
         ReviewRequestDto newDto = new ReviewRequestDto(id, restaurant_id, title, content);
@@ -82,4 +85,22 @@ public class ReviewController {
         return "review/reviewList";
     }
 
+    //My Review
+    public String getMyReviews(HttpServletRequest request){
+//        int no = Integer.parseInt(request.getParameter("no"));
+        HttpSession session = request.getSession();
+        String user_id = (String)session.getAttribute("log");
+
+        List<Review> reviewList = service.getReviews();
+        List<Review> result = new ArrayList<>();
+
+        for(Review r : reviewList){
+            if(r.getUser_id().equals(user_id)){
+                result.add(r);
+            }
+        }
+        request.setAttribute("review", result);
+
+        return "user/userMyPage";
+    }
 }

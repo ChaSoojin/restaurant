@@ -24,13 +24,13 @@ public class MainController {
     private final ReviewController reviewController;
 
     @GetMapping("/")
-    public String index() {
-        return "index";
+    public String main() {
+        return "main";
     }
 
-    @GetMapping("/main")
-    public String main(){
-        return "main";
+    @GetMapping("/index")
+    public String index(){
+        return "index";
     }
     @GetMapping("/join")
     public String join(){
@@ -100,7 +100,9 @@ public class MainController {
     }
 
     @GetMapping("/writePage")
-    public String reviewWritePage(){
+    public String reviewWritePage(@RequestParam String restaurant_id, HttpServletRequest request){
+        request.setAttribute("restaurant_id", restaurant_id);
+
         return "review/reviewWrite";
     }
     @PostMapping("/write")

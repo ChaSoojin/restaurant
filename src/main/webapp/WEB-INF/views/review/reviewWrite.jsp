@@ -14,7 +14,10 @@
 <body>
 <h1>리뷰 작성</h1>
 <form method="post" action="/write">
+    <input type="hidden" name="restaurant_id" value="${restaurant_id}">
+
     <span>제목: </span><input type="text" id="title" name="title" required><br><br>
+    <span>식당ID: ${restaurant_id}</span><br><br>
     <textarea name="content" id="content" rows="30" cols="100" placeholder="새로운 글을 작성하세요!" required></textarea><br><br>
     <input type="submit" value="제출하기">
     <input type="button" value="뒤로가기" onclick="location.href='reviewList'">

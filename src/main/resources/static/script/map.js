@@ -90,7 +90,7 @@ function restaurantSearch(myY, myX){
                 getList += "<td>" + data.documents[i].address_name + "</td>"
                 getList += "<td>"
                 getList += "<a href='/restaurantReserve?restaurant_id=" + data.documents[i].id + "'><button style='padding:13px 13px;'>예약하기</button></a>"
-                getList += "<a href='#'><button style='padding:13px 13px;'>리뷰작성</button></a>"
+                getList += "<a href='/writePage?restaurant_id=" + data.documents[i].id + "'><button style='padding:13px 13px;'>리뷰작성</button></a>"
                 getList += "</td>"
                 getList += "</tr>"
 

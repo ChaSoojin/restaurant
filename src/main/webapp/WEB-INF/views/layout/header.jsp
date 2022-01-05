@@ -40,14 +40,14 @@
                         <div class="rd-navbar-panel">
                             <!-- RD Navbar Toggle-->
                             <button class="rd-navbar-toggle" data-rd-navbar-toggle="#rd-navbar-nav-wrap"><span></span></button>
-                            <!-- RD Navbar Brand--><a class="rd-navbar-brand" href="/main">
+                            <!-- RD Navbar Brand--><a class="rd-navbar-brand" href="/">
                             <img src="logo.png" alt="#" width="120" height="25"/></a>
                         </div>
                         <div class="rd-navbar-collapse">
                             <button class="rd-navbar-collapse-toggle rd-navbar-fixed-element-1" data-rd-navbar-toggle="#rd-navbar-collapse-content"><span></span></button>
                             <div class="rd-navbar-collapse-content" id="rd-navbar-collapse-content">
                                 <%
-                                    if(session.getAttribute("id") == null){
+                                    if(session.getAttribute("log") == null){
 
                                 %>
                                 <a class="button button-primary-outline button-winona" href="/login">로그인</a>
@@ -81,7 +81,7 @@
                                 </form>
                             </div>
                             <ul class="rd-navbar-nav">
-                                <li class="rd-nav-item active"><a class="rd-nav-link" href="/main">홈</a>
+                                <li class="rd-nav-item active"><a class="rd-nav-link" href="/">홈</a>
                                 </li>
                                 <li class="rd-nav-item"><a class="rd-nav-link" href="#">맛집검색</a>
                                     <ul class="rd-menu rd-navbar-dropdown">
@@ -110,7 +110,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="#">마이페이지이지롱</a>
+                                <li class="rd-nav-item"><a class="rd-nav-link" href="#">마이페이지</a>
                                     <ul class="rd-menu rd-navbar-dropdown">
                                         <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="/userMyPage">마이페이지</a>
                                         </li>

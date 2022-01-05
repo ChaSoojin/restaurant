@@ -1,5 +1,6 @@
 package com.example.restaurant.service;
 
+
 import com.example.restaurant.domain.User;
 import com.example.restaurant.domain.UserRepository;
 import com.example.restaurant.domain.UserRequestDto;
@@ -21,13 +22,13 @@ public class UserService {
 
     //CRUD
     //1. Create
-    public Boolean addUser(UserRequestDto userRequestDto){
+    public Boolean addUser(UserRequestDto userRequestDto) {
         User user = new User(userRequestDto);
         List<User> users = getUsers();
         boolean chk = true;
 
-        for(User u : users){
-            if(u.getId().equals(user.getId())){
+        for (User u : users) {
+            if (u.getId().equals(user.getId())) {
                 chk = false;
             }
         }
@@ -36,82 +37,83 @@ public class UserService {
     }
 
 
-    //2. Read
-    public User getUser(String id, String pw  ){
+    public User findUser(String id) {
         List<User> users = getUsers();
 
-        for(User user : users){
-            if(user.getId().equals(id) && user.getPw().equals(pw)){
+
+        for (User user : users) {
+            if (user.getId().equals(id)) {
+
 //                HttpSession session = request.getSession();
 //                session.setAttribute("log",id);
                 return user;
             }
         }
-        return null;
 
+        return null;
     }
 
-
-    public List<User> getUsers(){
+    //유저 들!!
+    public List<User> getUsers() {
         List<User> users = null;
         users = repo.findAll();
-        return  users;
+        return users;
     }
-    public boolean checkLogin(String id, String pw, HttpServletRequest request){
-        List<User> users = getUsers();
-        System.out.println("사이즈: " + users.size());
 
+    public boolean checkLogin(String id, String pw, HttpServletRequest request) {
+        List<User> users = getUsers();
         String logCheck = null;
-        String msg = "";
 
         // 로그인 되는지 체크
-        for(User user : users) {
-            System.out.println("ID: " + id + " PW: " + pw + " 유저아이디: " + user.getId() + " 유저비번: " + user.getPw());
-
+        for (User user : users) {
             if (user.getId().equals(id) && user.getPw().equals(pw)) {
-                System.out.println("1) ID: " + id + " PW: " + pw + " 유저아이디: " + user.getId() + " 유저비번: " + user.getPw());
-                msg = "로그인하셨습니다.";
+                System.out.println("ID: " + id + " PW: " + pw + " 유저아이디: " + user.getId() + " 유저비번: " + user.getPw());
+
+                request.setAttribute("message", "로그인하셨습니다.");
                 logCheck = id;
-                break;
             } else {
-                System.out.println("2) ID: " + id + " PW: " + pw + " 유저아이디: " + user.getId() + " 유저비번: " + user.getPw());
-                msg = "로그인에 실패했습니다.";
+                request.setAttribute("message", "로그인에 실패했습니다.");
             }
         }
-
-        request.setAttribute("message", msg);
-
-        if(logCheck != null){
+        if (logCheck != null) {
             HttpSession session = request.getSession();  //세션 객체 생성
             session.setAttribute("log", id);  // vo에 저장한 유저정보를 세션  값으로 입력
 //            request.setAttribute("log", logCheck);
             //로그값확인하기위해 출력
-            System.out.println("로그값!!====="+logCheck);
+            System.out.println("로그값!!=====" + logCheck);
             return true;
         }
         return false;
     }
 
+
     // 3. Update
     @Transactional  //기존의 테이블에 쿼리가 일어나야함을 알려줌
-    public User updateUser(int no,UserRequestDto userRequestDto){
-//        User user = repo.findById(code).orElse(
+    public boolean updateUser(String id, UserRequestDto dto) {
+        User user = findUser(id);
+//        User user2 = repo.findById(user.getNo()).orElse(
 //                () -> new IllegalArgumentException("존재하지 않는 사용자입니다.")
 //        );
-//        User user = getUser(no);
-//        user.update(userRequestDto);
-//        return user;
-        return null;
+        System.out.println("dto:::::" + dto);
+        user.update(dto);
+        return true;
     }
 
     //4. Delete
     @Transactional
-    public int deletUser(int no){
-//        User  user = getUser(no);
-//        repo.deleteById(user.getNo());
-//        return user.getNo();
-        return 0;
+    public int deletUser(String id) {
+        User user = findUser(id);
+        repo.deleteById(user.getNo());
+        return user.getNo();
+    }
 
+    public User getUser(String id) {
+        User user = findUser(id);
+        user = repo.findById(user.getNo()).orElseThrow(
+                () -> new IllegalArgumentException("존재하지 않는 리뷰입니다.")
+        );
+
+        return user;
     }
 
 }

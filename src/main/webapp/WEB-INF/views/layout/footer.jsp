@@ -7,7 +7,7 @@
             <div class="footer-advanced-layout">
                 <div>
                     <ul class="list-nav">
-                        <li><a href="/main">홈</a></li>
+                        <li><a href="/">홈</a></li>
                         <li><a href="/restaurantSearch">맛집검색</a></li>
                         <li><a href="#">맛집예약</a></li>
                         <li><a href="#">리뷰게시판</a></li>

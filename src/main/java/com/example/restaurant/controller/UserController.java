@@ -1,15 +1,19 @@
 package com.example.restaurant.controller;
 
+
+
 import com.example.restaurant.domain.User;
 import com.example.restaurant.domain.UserRepository;
 import com.example.restaurant.domain.UserRequestDto;
 import com.example.restaurant.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -50,20 +54,16 @@ public class UserController {
 
         return "/";
     }
-//
 
-    // 2. Read
-    @GetMapping("/v1/users/{id}")
-    public User getUser(@PathVariable String id, String pw){
-        return service.getUser(id, pw );
 
-    }
-
-    //getUsers 메소드 완성 -> 디엠으로 제출 (브라우저 또는 API플랫폼에서 get 요청 결과물 캡쳐)
     @GetMapping("/v1/users")
     public List<User> getUsers(){
         return service.getUsers();
+// List<User> users = null;
+// users = repo.findAll();
+// return users;
     }
+
 
 
     public String  checkLogin(@RequestParam Map<String, String> data,HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -84,20 +84,55 @@ public class UserController {
             out.println("<script>alert('아이디, 패스워드를 확인해주세요!');</script>");
             out.flush();
 
-            return "user/login";
+            return "/user/login";
         }
 
     }
 
-    // 3. Update
-    @PutMapping("/v1/users/{code}")
-    public User updateUser(@PathVariable int code, @RequestBody UserRequestDto userRequestDto ){
-        return service.updateUser(code, userRequestDto);
+
+    //클라이언트로 유저의데이터를 가져오기위한 메소드
+    public String getUser( HttpServletRequest request){
+
+        String id = request.getParameter("id");
+        System.out.println("id===="+id);
+
+        searchUser(id,request);
+
+        return "user/userUpdate";
+//
     }
 
-    // 4. Delete
-    @DeleteMapping("/v1/users/{code}")
-    public int deleteUser(@PathVariable int code){
-        return service.deletUser(code);
+    public void searchUser(String id, HttpServletRequest request){
+//        int no = Integer.parseInt(request.getParameter("no"));
+        User user = service.getUser(id);
+        request.setAttribute("loginUser", user);
+//        return "review/reviewView"; // d이동
+    }
+
+
+    //    유저업데이트
+    public String updateUser(@RequestParam Map<String, String> updateFormData, HttpServletRequest request){
+
+        String id = updateFormData.get("id");
+        System.out.println("id======"+id);
+        String pw = (String) updateFormData.get("pw");
+        String phone = (String) updateFormData.get("phone");
+        String email = (String) updateFormData.get("email");
+        UserRequestDto dto = new UserRequestDto(pw,phone,email);
+        System.out.println("유저컨트롤러 업데이트유저메소드 안 ===");
+        if(service.updateUser(id, dto)) {
+            System.out.println("업데이트 성공!");
+        }
+        //어디로 이동시킬지 조원과 상의할것 마이페이지로 다시 이동시키는게 나을거같은게 내생각
+        return "main";
+
+    }
+
+    public String deleteUser(HttpServletRequest request){
+        String id = request.getParameter("log");
+        service.deletUser(id);
+        HttpSession session= request.getSession();
+        session.removeAttribute("log");
+        return "main";
     }
 }
