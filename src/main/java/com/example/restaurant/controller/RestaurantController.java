@@ -37,4 +37,29 @@ public class RestaurantController {
 
         return "restaurant/restaurantDetail";
     }
+
+    // ------- 사장 페이지 관련 --------
+    // 이게 네 가게가 맞느냐 할때 넘겨줄 레스토랑 정보
+    public String settingRestaurantForm(String restaurant_id, HttpServletRequest request){
+        List<Restaurant> restaurantList  = service.getRestaurant(restaurant_id);
+        request.setAttribute("restaurantList", restaurantList);
+
+        return "/user/ownerSettingRestaurant";
+    }
+
+    // 가게에 사장 ID 업데이트
+    public String setMyRestaurant(HttpServletRequest request){
+        String restaurant_id = request.getParameter("restaurant_id");
+        String user_id = request.getParameter("user_id");
+        service.updateOwner(restaurant_id,user_id);
+        return "user/ownerMyPage";
+    }
+
+    // 사장ID 로 가게 정보 불러오기
+    public String getRestaurantList(HttpServletRequest request){
+        String user_id = request.getParameter("user_id");
+        List<Restaurant> list = service.getRestaurants(user_id);
+        request.setAttribute("list", list);
+        return "user/ownerMyPage";
+    }
 }

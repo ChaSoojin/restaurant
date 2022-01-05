@@ -33,4 +33,20 @@ public class ReserveService {
         }
         return result;
     }
+
+    // ----- 사장페이지 관련 ------
+
+    // 레스토랑 id 로 예약내역 조회
+    public List<Reserve> getMyReserveByRestaurantId(String restaurant_id){
+        List<Reserve> reserveList = repo.findAll();
+        List<Reserve> result = new ArrayList<Reserve>();
+
+        for(Reserve r : reserveList){
+            System.out.println(r.getRestaurant_name());
+            if(r.getRestaurant_id().equals(restaurant_id)){
+                result.add(r);
+            }
+        }
+        return result;
+    }
 }

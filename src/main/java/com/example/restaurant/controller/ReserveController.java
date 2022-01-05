@@ -51,4 +51,12 @@ public class ReserveController {
         System.out.println("예약내용: " + reserveList.get(0).getRestaurant_name());
         return "/restaurant/myReserve";
     }
+
+    // ---- 사장님 예약 확인용 -----
+    public String ownerReserveCheck(HttpServletRequest request){
+        String id = request.getParameter("restaurant_id");
+        List<Reserve> reserve = reserveService.getMyReserveByRestaurantId(id);
+        request.setAttribute("reserve", reserve);
+        return "user/ownerReserve";
+    }
 }

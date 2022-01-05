@@ -35,4 +35,9 @@ public class Restaurant extends Timestamped {
         this.x = dto.getX();
         this.y = dto.getY();
     }
+
+    //사장님 아이디 추가
+    public void update(RestaurantRequestDto dto){
+        this.user_id = dto.getUser_id();
+    }
 }

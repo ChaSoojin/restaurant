@@ -21,11 +21,18 @@ public class UserService {
 
     //CRUD
     //1. Create
-    public User addUser(UserRequestDto userRequestDto){
-        System.out.println("UserService.java 얘가문제냐");
+    public Boolean addUser(UserRequestDto userRequestDto){
         User user = new User(userRequestDto);
+        List<User> users = getUsers();
+        boolean chk = true;
 
-        return repo.save(user);
+        for(User u : users){
+            if(u.getId().equals(user.getId())){
+                chk = false;
+            }
+        }
+
+        return chk;
     }
 
 
@@ -35,7 +42,6 @@ public class UserService {
 
         for(User user : users){
             if(user.getId().equals(id) && user.getPw().equals(pw)){
-
 //                HttpSession session = request.getSession();
 //                session.setAttribute("log",id);
                 return user;

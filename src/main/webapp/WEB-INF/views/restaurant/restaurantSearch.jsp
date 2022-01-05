@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ include file="/WEB-INF/views/layout/header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url="/WEB-INF/views/layout/header.jsp"/>
+
+<section class="breadcrumbs-custom bg-image"
+         style="background-image: url(https://media.istockphoto.com/vectors/kawaii-food-vector-emoticon-japanese-sushi-character-and-emoji-roll-vector-id969402478);">
+    <div class="breadcrumbs-custom-inner">
+        <div class="breadcrumbs-custom-container container">
+            <div class="breadcrumbs-custom-main">
+                <h6 class="breadcrumbs-custom-subtitle title-decorated" style="color:white;">우리동네 맛집찾기</h6>
+                <h1 class="breadcrumbs-custom-title" style="color:white;">맛집 검색</h1>
+            </div>
+        </div>
+    </div>
+</section>
 
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4ab81001911aa4ddc5b7d6148c5a348b"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -26,3 +39,5 @@
 </div>
 <script src="script/map.js"></script>
 </body>
+
+<%@ include file="/WEB-INF/views/layout/footer.jsp" %>

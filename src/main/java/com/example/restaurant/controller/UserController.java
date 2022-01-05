@@ -1,6 +1,7 @@
 package com.example.restaurant.controller;
 
 import com.example.restaurant.domain.User;
+import com.example.restaurant.domain.UserRepository;
 import com.example.restaurant.domain.UserRequestDto;
 import com.example.restaurant.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ import java.util.Map;
 @RestController
 @Controller
 public class UserController {
-
+    private final UserRepository repo;
     private final UserService service;
 
 //api 구현
@@ -32,30 +33,22 @@ public class UserController {
 // public User addUser(@RequestBody UserRequestDto userRequestDto){
 
     //회원가입
-    @PostMapping("/v1/users")
-    public void addUser(@RequestBody UserRequestDto userRequestDto, HttpServletResponse response) throws IOException {
+    public String addUser(UserRequestDto userRequestDto, HttpServletRequest request) {
         System.out.println("=======______++++++++=======");
-        // return service.addUser(userRequestDto);
+        User user = new User(userRequestDto);
 
-        User user = service.addUser(userRequestDto);
-
-        if(user != null){
-            response.setContentType("text/html; charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            out.println("<script>alert('회원가입 되었습니다.');</script>");
-            out.flush();
-            System.out.println("성공");
+        if(service.addUser(userRequestDto)){
+            System.out.println("성공.." + user.getId());
+            repo.save(user);
+            request.setAttribute("proc", "success");
         }
+
         else{
-            response.setContentType("text/html; charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            out.println("<script>alert('중복 아이디가 존재합니다.');</script>");
-            out.flush();
-            System.out.println("실패");
+            System.out.println("실패.."+ user.getId());
+            request.setAttribute("proc", "fail");
         }
 
-        System.out.println(" UserConteroller 의 addUser메소드의 service.addUser(userRequestDto) 후");
-
+        return "/";
     }
 //
 
@@ -70,9 +63,6 @@ public class UserController {
     @GetMapping("/v1/users")
     public List<User> getUsers(){
         return service.getUsers();
-// List<User> users = null;
-// users = repo.findAll();
-// return users;
     }
 
 
