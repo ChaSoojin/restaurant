@@ -15,6 +15,27 @@
 <body>
 <h1>리뷰 게시판</h1>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="wrap">
     <table border="1" width="100%">
         <thead>

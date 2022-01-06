@@ -53,13 +53,16 @@ function checkVal(form) {
     else if (!checkName(form)) {
         return false;
     }
+    else if (!checkPhone(form)) {
+        return false;
+    }
 
     else if (!checkMail(form)) {
         return false;
     }
-    else if (!checkPhonnumber(form)) {
-        return false;
-    }
+    // else if (!checkPhonnumber(form)) {
+    //     return false;
+    // }
     return true;
 }
 
@@ -160,12 +163,37 @@ function checkName(form) {
     return true;
 }
 
+function checkPhone(form){
+    if(!checknull(form.phone.value)) {
+        alert("전화번호가 공백입니다")
+        // const form = document.info;
+        form.phone.value = "";      //input태그 email이 email 인곳 공백만듬
+        form.phone.focus();
+        return false;
+    }
+
+    let valTest = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+
+    if (!valTest.test(form.phone.value)) {
+        alert("전화번호를 확인해주세요");
+        // const form = document.info;
+        form.phone.value = "";      //input태그 name이 email 인곳 공백만듬
+        form.phone.focus();        //포커스잡아줌
+        return false;
+    }
+
+    return true;
+
+}
+
+
+
 //메일 검사
 function checkMail(form) {
     if (!checknull(form.email.value)) {
         alert("메일이 공백입니다")
-        const form = document.info;
-        form.email.value = "";      //input태그 email이 email 인곳 공백만듬
+        // const form = document.info;
+        form.email.value = "";      //input태그 name이 email 인곳 공백만듬
         form.email.focus();
         return false;
     }
@@ -174,8 +202,8 @@ function checkMail(form) {
 
     if (!valTest.test(form.email.value)) {
         alert("이메일주소를 확인해주세요");
-        const form = document.info;
-        form.email.value = "";      //input태그 name이 email 인곳 공백만듬
+        // const form = document.info;
+        form.email.value = "";      //input태그  name이 email 인곳 공백만듬
         form.email.focus();        //포커스잡아줌
         return false;
     }
@@ -184,11 +212,11 @@ function checkMail(form) {
 }
 
 //전화번호검사
-function checkPhonnumber(form){
-    if(!checknull(form.phone.value)){
-        alert("전화번호가 공백입니다")
-        return false;
-    }
-
-    return true;
-}
+// function checkPhonnumber(form){
+//     if(!checknull(form.phone.value)){
+//         alert("전화번호가 공백입니다")
+//         return false;
+//     }
+//
+//     return true;
+// }
