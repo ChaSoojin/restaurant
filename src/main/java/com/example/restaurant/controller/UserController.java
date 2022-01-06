@@ -91,15 +91,12 @@ public class UserController {
 
 
     //클라이언트로 유저의데이터를 가져오기위한 메소드
-    public String getUser( HttpServletRequest request){
-
-        String id = request.getParameter("id");
+    public void getUser( HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String id = (String)session.getAttribute("log");
         System.out.println("id===="+id);
 
         searchUser(id,request);
-
-        return "user/userUpdate";
-//
     }
 
     public void searchUser(String id, HttpServletRequest request){

@@ -16,11 +16,11 @@ public class UserRequestDto {
         this.pw = pw;
     }
 
-    public UserRequestDto(String id, String pw, String name){
-        this.id = id;
-        this.pw = pw;
-        this.name = name;
-    }
+//    public UserRequestDto(String id, String pw, String name){
+//        this.id = id;
+//        this.pw = pw;
+//        this.name = name;
+//    }
 
     public UserRequestDto(String id, String pw, String name, int separate, String phone, String email){
         this.id = id;
@@ -30,4 +30,11 @@ public class UserRequestDto {
         this.phone = phone;
         this.email = email;
     }
+
+    public UserRequestDto(String pw, String phone, String email){
+        this.pw = pw;
+        this.phone = phone;
+        this.email = email;
+    }
+
 }

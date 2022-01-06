@@ -1,6 +1,8 @@
 package com.example.restaurant.controller;
 
+import com.example.restaurant.domain.Review;
 import com.example.restaurant.domain.UserRequestDto;
+import com.example.restaurant.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @RequiredArgsConstructor
@@ -22,6 +26,7 @@ public class MainController {
     private final ReserveController reserveController;
     private final UserController userController;
     private final ReviewController reviewController;
+    private final ReviewService service;
 
     @GetMapping("/")
     public String main() {
@@ -61,6 +66,20 @@ public class MainController {
         return "main";
     }
 
+    //클라이언트에서 업데이트페이지 가는중의 유저가입력한정보 업데이트하기위한 메소드
+//    @GetMapping("/userUpdatePage")
+//    public String userUpdatePage(HttpServletRequest request){
+//        return userController.getUser(request);
+//
+//    }
+
+    // 업데이트페이지에서 작성한정보 db저장
+    @PostMapping("/userInfoUpdate")
+    public String updateUser(@RequestParam Map<String, String> updateFormData, HttpServletRequest request){
+
+        System.out.println("id");
+        return userController.updateUser(updateFormData,request);
+    }
 
     //----Restaurant----
     @GetMapping("/restaurantSearch")
@@ -82,8 +101,13 @@ public class MainController {
     }
 
     @GetMapping("/userMyPage")
-    public String mypage(){
-        return "user/userMyPage";
+    public String mypage(HttpServletRequest request){
+        return reviewController.getMyDatas(request);
+    }
+
+    @GetMapping("/reserveDelete")
+    public String reserveDelete(@RequestParam int no, HttpServletRequest request){
+        return reserveController.deleteReserve(no, request);
     }
 
 

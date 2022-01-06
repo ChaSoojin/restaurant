@@ -32,6 +32,7 @@ public class ReviewService {
         System.out.println(review.getView() + "개");
         return review;
     }
+
     public List<Review> getReviews(){
         List<Review> list = null;
         list = repo.findAll();

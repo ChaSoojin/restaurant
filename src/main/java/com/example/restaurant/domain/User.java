@@ -43,8 +43,11 @@ public class User extends Timestamped{
     }
 
     // setter 메소드 대신 -> update(UserRequestDto를 받는) 메소드를 통해 처리
-    public void update(UserRequestDto userRequestDto){
+    public void update(UserRequestDto userRequestDto) {
         this.pw = userRequestDto.getPw();
-//        this.name = userRequestDto.getName();
-    }
+        this.phone = userRequestDto.getPhone();
+        this.email = userRequestDto.getEmail();
+
+        //패스트워드 전화번호 이메일
+    };
 }

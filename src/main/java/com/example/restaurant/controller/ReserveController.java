@@ -20,6 +20,7 @@ import java.util.Map;
 public class ReserveController {
     private final ReserveService reserveService;
     private final RestaurantService restaurantService;
+    private final ReviewController reviewController;
 
     public String reserveForm(String restaurant_id, HttpServletRequest request){
         List<Restaurant> restaurantList  = restaurantService.getRestaurant(restaurant_id);
@@ -51,6 +52,17 @@ public class ReserveController {
         System.out.println("예약내용: " + reserveList.get(0).getRestaurant_name());
         return "/restaurant/myReserve";
     }
+
+    public String deleteReserve(@RequestParam int no, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String user_id = (String) session.getAttribute("log");
+
+        reserveService.deleteReserve(no);
+        reviewController.getMyDatas(request);
+
+        return "user/userMyPage";
+    }
+
 
     // ---- 사장님 예약 확인용 -----
     public String ownerReserveCheck(HttpServletRequest request){

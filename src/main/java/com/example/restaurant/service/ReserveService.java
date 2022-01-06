@@ -1,12 +1,10 @@
 package com.example.restaurant.service;
 
-import com.example.restaurant.domain.Reserve;
-import com.example.restaurant.domain.ReserveRepository;
-import com.example.restaurant.domain.ReserveRequestDto;
-import com.example.restaurant.domain.Restaurant;
+import com.example.restaurant.domain.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +30,11 @@ public class ReserveService {
             }
         }
         return result;
+    }
+
+    @Transactional
+    public void deleteReserve(int no){
+        repo.deleteById(no);
     }
 
     // ----- 사장페이지 관련 ------

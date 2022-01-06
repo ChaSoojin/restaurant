@@ -1,7 +1,9 @@
 package com.example.restaurant.controller;
 
+import com.example.restaurant.domain.Reserve;
 import com.example.restaurant.domain.Review;
 import com.example.restaurant.domain.ReviewRequestDto;
+import com.example.restaurant.service.ReserveService;
 import com.example.restaurant.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,8 +19,9 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 public class ReviewController {
-
+    private final ReserveService reserveService;
     private final ReviewService service;
+    private final UserController userController;
 
     // create
     public String addReview(@RequestParam Map<String,String> formdata, HttpServletRequest request){
@@ -86,20 +89,34 @@ public class ReviewController {
     }
 
     //My Review
-    public String getMyReviews(HttpServletRequest request){
-//        int no = Integer.parseInt(request.getParameter("no"));
+    public String getMyDatas(HttpServletRequest request){
         HttpSession session = request.getSession();
         String user_id = (String)session.getAttribute("log");
 
         List<Review> reviewList = service.getReviews();
         List<Review> result = new ArrayList<>();
 
+        List<Reserve> reserveList = reserveService.getMyReserve(user_id);
+        List<Reserve> result2 = new ArrayList<>();
+
         for(Review r : reviewList){
             if(r.getUser_id().equals(user_id)){
                 result.add(r);
+                System.out.println("ID: " + r.getUser_id() + " Title: " + r.getTitle());
             }
         }
-        request.setAttribute("review", result);
+
+        for(Reserve r2 : reserveList){
+            result2.add(r2);
+            System.out.println("ID: " + r2.getUser_id() + " --- 식당: " + r2.getRestaurant_name());
+        }
+
+        System.out.println("리스트: " + result.size());
+        System.out.println("리스트2: " + result2.size());
+
+        request.setAttribute("myreview", result);
+        request.setAttribute("myreserve", result2);
+        userController.getUser(request);
 
         return "user/userMyPage";
     }

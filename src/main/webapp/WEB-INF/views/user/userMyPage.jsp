@@ -48,35 +48,30 @@
                     <br> <br>
                     <div class="tab-content">
                         <div class="tab-pane fade show active in" id="tabs-1-1">
-                            <form method="post" action="userUpdatePro.jsp?num=1">
-                                <span>ID:&#9;</span><input type='text' name='id' value="id" readonly required><br><br>
-                                <span>&#9;PW:&#9;</span><input type='password' name='pw' required><br><br>
-                                <span>&#9;이름:&#9;</span><input type='text' name='name' value="name" required><br><br>
-                                <span>&#9;e-mail:&#9;</span><input type='text' name='email' value="email" required><br><br>
-                                <span>&#9;Tel:&#9;</span><input type='text' name='tel' value="tel" required><br><br>
+                            <form action="userInfoUpdate" method="post">
+                                <table>
+                                    <tr>
+                                        <td>비밀번호</td>
+                                        <td><input type="password" name="pw" size="20" id="pw" value="${loginUser.getPw()}">*</td>
+                                    </tr>
 
-                                <span>생년월일:</span><br>
-                                <input type="text" maxlength="4" placeholder="년(4자)" name="year" id="year" required><br>
-                                <select name="mon" id="mon" required>
-                                    <option value="o1" id="o1">월</option>
-                                    <option value="o2">1</option>
-                                    <option value="o3">2</option>
-                                    <option value="o4">3</option>
-                                    <option value="o5">4</option>
-                                    <option value="o6">5</option>
-                                    <option value="o7">6</option>
-                                    <option value="o8">7</option>
-                                    <option value="o9">8</option>
-                                    <option value="o10">9</option>
-                                    <option value="o11">10</option>
-                                    <option value="o12">11</option>
-                                    <option value="o13">12</option>
-                                </select>
-                                <br>
-                                <input type="text" maxlength="2" placeholder="일" id="day" name="day" required><br>
+                                    <tr>
+                                        <td>폰번호</td>
+                                        <td><input type="text" name="phone" size="20" id="phone" value="${loginUser.getPhone()}">*</td>
+                                    </tr>
 
-                                <input type="hidden" id="num" name="num" value="<%=request.getParameter("num")%>"><br>
-                                <input type="submit" value="수정하기">
+                                    <tr>
+                                        <td>email</td>
+                                        <td><input type="text" name="email" size="20" id="email" value="${loginUser.getEmail()}">*</td>
+                                    </tr>
+
+                                </table>
+                                <div id="wrapBtn">
+                                    <%--<input type="submit" value="확인" id="btn" >--%>
+                                    <input type="submit" value="수정완료" id="btn">
+
+                                    <input type="hidden" name=id value="<%=(String)session.getAttribute("log")%>">
+                                </div>
                             </form>
 
                             <br>
@@ -96,13 +91,26 @@
                                 <tr>
                                     <th>번호</th>
                                     <th>예약자</th>
+                                    <th>식당명</th>
+                                    <th>전화번호</th>
                                     <th>예약날짜</th>
+                                    <th>예약인원</th>
                                     <th>예약취소</th>
                                 </tr>
-                                <tr>
-                                    <td style="cursor: pointer; color: blue" onclick="location.href='#'">NO</td>
-                                    <td><button id="cancelbtn" onclick="location.href='#'">예약취소</button></td>
-                                </tr>
+
+                                <c:forEach var="item" items="${myreserve}">
+                                    <tr>
+                                        <td>${item.getNo()}</td>
+                                        <td>${item.getUser_id()}</td>
+                                        <td style="cursor: pointer; color: blue"
+                                            onclick="location.href='/detail?restaurant_id=<c:out value="${item.getRestaurant_id()}"/>'">${item.getRestaurant_name()}</td>
+                                        <td>${item.getPhone()}</td>
+                                        <td>${item.getReserve_time()}</td>
+                                        <td>${item.getCnt()}</td>
+                                        <td><button id="cancelbtn" onclick="location.href='/reserveDelete?no=<c:out value="${item.getNo()}"/>'">예약취소</button></td>
+                                    </tr>
+                                </c:forEach>
+
                             </table>
                         </div>
 
@@ -120,14 +128,19 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+
+                                <c:forEach var="item" items="${myreview}">
                                 <tr>
-                                    <td>NO</td>
+                                    <td>${item.getNo()}</td>
                                     <td style="cursor: pointer; color: blue"
-                                        onclick="location.href='#'">title</td>
-                                    <td>bid</td>
-                                    <td>likes</td>
-                                    <td>enrolldate</td>
+                                        onclick="location.href='reviewView?no=<c:out value="${item.getNo()}"/>'">${item.getTitle()}</td>
+                                    <td>${item.getUser_id()}</td>
+                                    <td>${item.getLikes()}</td>
+                                    <td>${item.getView()}</td>
+                                    <td>${item.getModified_at()}</td>
                                 </tr>
+                                </c:forEach>
+
                                 </tbody>
                             </table>
                         </div>
