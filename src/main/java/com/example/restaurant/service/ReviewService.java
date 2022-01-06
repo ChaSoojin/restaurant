@@ -6,6 +6,7 @@ import com.example.restaurant.domain.ReviewRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,17 +60,18 @@ public class ReviewService {
     // ----- 사장페이지 관련 ------
 
     // 레스토랑 id 로 리뷰내역 조회
-    public List<Review> getMyReviewByRestaurantId(String restaurant_id){
+    public boolean getMyReviewByRestaurantId(HttpServletRequest request){
+        String restaurant_id = request.getParameter("restaurant_id");
         List<Review> reviewList = repo.findAll();
-        List<Review> result = new ArrayList<>();
+        List<Review> review = new ArrayList<>();
 
         for(Review r : reviewList){
-            System.out.println(r.getTitle());
             if(r.getRestaurant_id().equals(restaurant_id)){
-                result.add(r);
+                review.add(r);
             }
         }
-        return result;
+        request.setAttribute("review", review);
+        return true;
     }
 
     // update comment

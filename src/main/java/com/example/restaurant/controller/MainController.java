@@ -211,15 +211,23 @@ public class MainController {
     // 각 레스토랑 별 예약내역 보러 가기
     @GetMapping("/ownerReserveCheck")
     public String ownerReserveCheck(HttpServletRequest request){
-        String restaurant_id = request.getParameter("restaurant_id");
-        System.out.println("restaurant_id:"+restaurant_id);
+//        String restaurant_id = request.getParameter("restaurant_id");
+//        System.out.println("restaurant_id:"+restaurant_id);
         return reserveController.ownerReserveCheck(request);
     }
 
+    // 각 레스토랑 별 리뷰 보러 가기
+    @GetMapping("/ownerReviewCheck")
+    public String ownerReviewCheck(HttpServletRequest request){
+//        String restaurant_id = request.getParameter("restaurant_id");
+//        System.out.println("restaurant_id:"+restaurant_id);
+        return reviewController.ownerReviewCheck(request);
+    }
+
     // 예약내역 지우고 다시 예약내역 보러가기
-    @GetMapping("/deleteRestaurantBtUserid")
-    public String deleteRestaurantBtUserid(HttpServletRequest request){
-        return reserveController.ownerDeleteReserve(request);
+    @GetMapping("/deleteReserve")
+    public String deleteReserve(HttpServletRequest request){
+        return reserveController.deleteReserve(request);
     }
 
     // 레스토랑 삭제

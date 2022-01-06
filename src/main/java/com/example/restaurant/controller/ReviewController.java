@@ -123,12 +123,18 @@ public class ReviewController {
         return "user/userMyPage";
     }
 
-    //-------
+    //----- 사장 리뷰 확인용 -----
 
     // 사장 / name 리뷰로 준거 안그러면 리스트로 넘어감
+    // 뭔지 모르겠음
     public String ownerGetReviews(HttpServletRequest request){
         List<Review> review = service.getReviews();
         request.setAttribute("reivew", review);
         return "review/reviewList";
+    }
+    // 레스토랑 아이디로 리뷰내역 가져오기
+    public String ownerReviewCheck(HttpServletRequest request){
+        service.getMyReviewByRestaurantId(request);
+        return "user/ownerReview";
     }
 }
