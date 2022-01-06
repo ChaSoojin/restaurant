@@ -56,6 +56,8 @@
                                 <%
                                 }else {
                                 %>
+                                // 사장일때만 나오게 하고 싶음
+                                <a class="button button-primary-outline button-winona" href="/ownerPage">사장페이지</a>
                                 <a class="button button-primary-outline button-winona" href="/userMyPage">마이페이지</a>
                                 <a class="button button-primary button-winona" href="/logoutPro">로그아웃</a>
                                 <%

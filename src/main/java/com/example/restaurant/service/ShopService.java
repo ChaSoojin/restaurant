@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +16,16 @@ public class ShopService {
 
     private final ShopRepository repo;
     //1. Create
-    public Boolean addShop(ShopRequestDto shopRequestDto){
+    public Boolean addShop(ShopRequestDto shopRequestDto, HttpServletRequest request){
+
+        HttpSession session = request.getSession();
+
         Shop shop = new Shop(shopRequestDto);
+        String user_id = (String) session.getAttribute("log");
+        System.out.println(user_id);
+
+        shop.updateUserId(user_id);
+
         List<Shop> shops = getShops();
         boolean chk = true;
 
@@ -24,6 +33,13 @@ public class ShopService {
             if(s.getRestaurant_id().equals(shop.getRestaurant_id())){
                 chk = false;
             }
+        }
+
+        if(chk == true){
+            repo.save(shop);
+            System.out.println("성공.." + shop.getRestaurant_name());
+        }else{
+            System.out.println("실패..");
         }
 
         return chk;
@@ -37,7 +53,10 @@ public class ShopService {
     }
 
     // (user_id에 해당하는) 레스토랑 전부 다 받아서 테이블에 뿌리기
-    public List<Shop> getShops(String user_id, HttpServletRequest request){
+    public List<Shop> getShops(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String user_id = (String) session.getAttribute("log");
+
         List<Shop> list = repo.findAll();
         List<Shop> target = new ArrayList<Shop>();
 
@@ -65,12 +84,11 @@ public class ShopService {
         return result;
     }
 
-    // 이제 쓸 필요가 없음
+    // 레스토랑 삭제
     @Transactional
-    public boolean deleteShop(String restaurant_id){
-        Shop r = getShopById(restaurant_id);
-        ShopRequestDto dto = new ShopRequestDto(r.getRestaurant_id(),".",r.getRestaurant_name(),r.getPhone(),r.getAddress(),r.getX(),r.getY());
-        r.update(dto);
+    public boolean deleteShop(HttpServletRequest request){
+        String restaurant_id = request.getParameter("restaurant_id");
+        repo.deleteByStringId(restaurant_id);
         return true;
     }
 

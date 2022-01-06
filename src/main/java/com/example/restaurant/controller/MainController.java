@@ -160,9 +160,16 @@ public class MainController {
         return reviewController.reviewUpdate(formdata, request);
     }
 
-    // 레스토랑 리스트 뿌려주며 입장
+    // ----- 사장페이지 ----
+
+    // 사장페이지 들어가기
     @GetMapping("/ownerPage")
     public String ownerPage(HttpServletRequest request){
+        return "user/ownerMyPage";
+    }
+    // 레스토랑 리스트 들어가기
+    @GetMapping("/ownerShopList")
+    public String ownerShopList(HttpServletRequest request){
 //        String user_id = request.getParameter("user_id");
         return shopController.getShopList(request);
     }
@@ -205,10 +212,10 @@ public class MainController {
         return reserveController.ownerDeleteReserve(request);
     }
 
-    // 레스토랑에서 사장 user_id 삭제
-    @GetMapping("/deleteRestaurantByUserid")
-    public String deleteRestaurantByUserid(HttpServletRequest request){
-        return shopController.deleteShopByUserid(request);
+    // 레스토랑 삭제
+    @GetMapping("/deleteRestaurantByUserId")
+    public String deleteRestaurantByUserId(HttpServletRequest request){
+        return shopController.deleteShopByUserId(request);
     }
 
 //    // 오너 페이지 안 내 가게 -> 지도 보기
