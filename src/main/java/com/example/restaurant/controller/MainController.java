@@ -119,6 +119,12 @@ public class MainController {
         return reserveController.deleteReserve(no, request);
     }
 
+    @PostMapping("/reserve")
+    public String reserveData(@RequestParam Map<String, String> formdata, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        return reserveController.reserveData(formdata, request, response);
+    }
+
+
     //----Review----
 
 //    @GetMapping("/")

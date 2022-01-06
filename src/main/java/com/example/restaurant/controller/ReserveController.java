@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
@@ -29,8 +32,7 @@ public class ReserveController {
         return "/restaurant/restaurantReserve";
     }
 
-    @PostMapping("/reserve")
-    public Reserve reserveData(@RequestParam Map<String, String> formdata, HttpServletRequest request){
+    public String reserveData(@RequestParam Map<String, String> formdata, HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         String user_id = (String) session.getAttribute("log");
         String restaurant_name = (String) formdata.get("restaurant_name");
@@ -41,7 +43,13 @@ public class ReserveController {
         String user_name = (String) formdata.get("name");
 
         ReserveRequestDto newDto = new ReserveRequestDto(user_id, restaurant_id, restaurant_name, phone, reserve_time, cnt, user_name);
-        return reserveService.reserveData(newDto);
+        reserveService.reserveData(newDto);
+
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("<script>alert('예약이 완료되었습니다.');</script>");
+
+        return "main";
     }
 
     public String getMyReserve(String user_id, HttpServletRequest request){

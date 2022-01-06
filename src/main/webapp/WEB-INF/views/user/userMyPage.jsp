@@ -7,10 +7,7 @@
         cursor:pointer;
     }
 </style>
-<%
-    String log = (String)session.getAttribute("log");
-    if (log != null) {
-%>
+
 <section class="breadcrumbs-custom bg-image" style="background-image: url(logo.png);">
     <div class="breadcrumbs-custom-inner">
         <div class="breadcrumbs-custom-container container">
@@ -152,17 +149,5 @@
 </section>
 
 <input type="button" value="수정하기" onclick="location.href='userUpdatePage?id=logValue'">
-
-<%
-}else{
-%>
-<script>
-    alert("로그인 후 이용 가능합니다.");
-    history.back();
-</script>
-
-<%
-    }
-%>
 
 <c:import url="/WEB-INF/views/layout/footer.jsp"/>

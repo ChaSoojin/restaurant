@@ -40,12 +40,6 @@
     <!-- reserve_seq no id cnt days r_day use_navi use_seat -->
     <table border="solid 1px" style="border-collapse: collapse; width: 800px; height: 400px; margin:auto; text-align:center;">
         <tr>
-            <%
-                //String log = (String)session.getAttribute("id");
-                String id = "SESSIONID_TEMP";
-                session.setAttribute("log", id);
-            %>
-
             <td>NO</td>
             <td>${restaurantList.get(0).getNo()}</td>
             <td>식당ID</td>

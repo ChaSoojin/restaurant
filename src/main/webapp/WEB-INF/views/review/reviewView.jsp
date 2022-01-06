@@ -13,13 +13,9 @@
     <title>Review View</title>
 </head>
 <body>
-<%
-    session.setAttribute("log","apple");
-%>
 <c:set var="user_id" value="${sessionScope.log}"/>
 <c:set var="review_id" value="${review.getUser_id()}"/>
-<%--    <c:out value="user_id: ${user_id}"/><br>--%>
-<%--    <c:out value="review_id: ${review_id}"/><br>--%>
+
 <c:if test="${sessionScope.log eq review_id}">
     <input type="button" value="수정하기" onclick="location.href='reviewUpdatePage?no=<c:out value="${review.getNo()}"/>'">
 </c:if>

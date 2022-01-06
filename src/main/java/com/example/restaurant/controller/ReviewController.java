@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -89,7 +91,7 @@ public class ReviewController {
     }
 
     //My Review
-    public String getMyDatas(HttpServletRequest request){
+    public String getMyDatas(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String user_id = (String)session.getAttribute("log");
 
