@@ -44,3 +44,4 @@
 <script src="script/restaurantMap.js"></script>
 </body>
 </html>
+<c:import url="/WEB-INF/views/layout/footer.jsp"/>

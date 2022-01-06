@@ -25,3 +25,4 @@
 </form><input type="button" value="삭제하기" onclick="location.href='reviewDelete?no=${review.getNo()}'">
 </body>
 </html>
+<c:import url="/WEB-INF/views/layout/footer.jsp"/>

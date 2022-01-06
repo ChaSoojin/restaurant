@@ -14,6 +14,27 @@
     <title>Review View</title>
 </head>
 <body>
+<c:import url="/WEB-INF/views/layout/footer.jsp"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <c:set var="user_id" value="${sessionScope.log}"/>
 <c:set var="review_id" value="${review.getUser_id()}"/>
 
