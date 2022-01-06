@@ -3,7 +3,7 @@
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4ab81001911aa4ddc5b7d6148c5a348b"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
-
+<c:import url="/WEB-INF/views/layout/header.jsp"/>
 <!doctype html>
 <html lang="en">
 <head>
