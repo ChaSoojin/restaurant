@@ -1,6 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4ab81001911aa4ddc5b7d6148c5a348b"></script>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,7 +13,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="script/restaurantMap.js"></script>
+
     <title>My Shop List</title>
 </head>
 <body>
@@ -46,20 +50,21 @@
                     <%--      </tr>--%>
                 <tr>
                     <td>
-                            <%--          <input type="button" onclick="checkBrowser(${list.getX()}, ${list.getY()}, '${list.getRestaurant_name()}' )" value="지도보기">--%>
-                        <input type="button" onclick="location.href='ownerMapView?x=${list.getX()}&y=${list.getY()}&name=${list.getRestaurant_name()}'" value="지도보기">
+                                      <input type="button" onclick="checkBrowser(${list.getX()}, ${list.getY()}, '${list.getRestaurant_name()}' )" value="지도보기">
+<%--                        <input type="button" onclick="location.href='ownerMapView?x=${list.getX()}&y=${list.getY()}&name=${list.getRestaurant_name()}'" value="지도보기">--%>
                         <input type="button" onclick="location.href='ownerReserveCheck?restaurant_id=${list.getRestaurant_id()}'" value="예약내역 보러가기">
                         <input type="button" onclick="location.href='ownerReviewCheck?restaurant_id=${list.getRestaurant_id()}'" value="리뷰 보기">
                         <input type="button" onclick="location.href='deleteRestaurantByUserId?restaurant_id=${list.getRestaurant_id()}&user_id=${user_id}'" value="가게 삭제">
                     </td>
                 </tr>
             </table><br>
-            <div id="map"></div>
+
             <br><br>
         </c:forEach>
         <br><br>
     </c:otherwise>
 </c:choose>
-
+<div id="map" style="width:1000px;height:500px; display:inline-block;"></div>
+<script src="script/restaurantMap.js"></script>
 </body>
 </html>

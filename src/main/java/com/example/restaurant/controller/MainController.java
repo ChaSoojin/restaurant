@@ -237,9 +237,19 @@ public class MainController {
     }
 
 //    // 오너 페이지 안 내 가게 -> 지도 보기
-//    @GetMapping("/ownerMapView")
-//    public String ownerMapView(HttpServletRequest request){
-//        return "user/ownerMapViewPage";
-//    }
+    @GetMapping("/ownerMapView")
+    public String ownerMapView(HttpServletRequest request){
+        String x = request.getParameter("x");
+        String y = request.getParameter("y");
+        String name = request.getParameter("name");
+
+        request.setAttribute("x", x);
+        request.setAttribute("y", y);
+        request.setAttribute("name", name);
+
+        System.out.println("x :" + x);
+        System.out.println("name :" + name);
+        return "user/ownerMapViewPage";
+    }
 
 }
