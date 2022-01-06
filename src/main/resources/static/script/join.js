@@ -29,11 +29,16 @@ function join(form) {
                 phone : phone,
                 email : email
             })
-            // success : function(data){
-            //     alert("data " + data.id);
-            // }
+        }).done(res =>{
+            // alert(res);
+
+            if(res){
+                location.href = "/login";
+            }
+            else{
+                alert("이미 사용중인 아이디입니다.");
+            }
         })
-        location.href="/";
     }}
 
 

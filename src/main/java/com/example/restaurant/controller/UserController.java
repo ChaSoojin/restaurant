@@ -21,7 +21,7 @@ import java.util.Map;
 
 
 @RequiredArgsConstructor
-@RestController
+@RestController // @Controller + @ResponseBody (JSON)
 @Controller
 public class UserController {
     private final UserRepository repo;
@@ -37,7 +37,8 @@ public class UserController {
 // public User addUser(@RequestBody UserRequestDto userRequestDto){
 
     //회원가입
-    public String addUser(UserRequestDto userRequestDto, HttpServletRequest request) {
+    @PostMapping("/v1/users")
+    public boolean addUser(@RequestBody UserRequestDto userRequestDto, HttpServletRequest request) {
         System.out.println("=======______++++++++=======");
         User user = new User(userRequestDto);
 
@@ -45,14 +46,13 @@ public class UserController {
             System.out.println("성공.." + user.getId());
             repo.save(user);
             request.setAttribute("proc", "success");
-        }
 
-        else{
+            return true;
+        }
             System.out.println("실패.."+ user.getId());
             request.setAttribute("proc", "fail");
-        }
 
-        return "/";
+        return false;
     }
 
 
@@ -125,11 +125,13 @@ public class UserController {
 
     }
 
-    public String deleteUser(HttpServletRequest request){
-        String id = request.getParameter("log");
-        service.deletUser(id);
-        HttpSession session= request.getSession();
-        session.removeAttribute("log");
+    public String deleteUser(Map<String, String> data, HttpServletRequest request){
+        String id = data.get("id");
+        String pw = data.get("pw");
+        service.deletUser(id, pw, request);
         return "main";
     }
+
+
+
 }

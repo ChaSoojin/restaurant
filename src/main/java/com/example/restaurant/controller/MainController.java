@@ -47,11 +47,6 @@ public class MainController {
         return "user/login";
     }
 
-    @PostMapping("/v1/users")
-    public String addUser(@RequestBody UserRequestDto userRequestDto, HttpServletRequest request) {
-            return userController.addUser(userRequestDto, request);
-    }
-
     @PostMapping("/loginProM")
     public String loginPro(@RequestParam Map<String, String> data, HttpServletRequest request, HttpServletResponse response) throws IOException {
         return userController.checkLogin(data, request, response);
@@ -81,6 +76,18 @@ public class MainController {
         System.out.println("id");
         return userController.updateUser(updateFormData,request);
     }
+
+
+
+
+    @PostMapping("/deleteUser")
+    public String userDelete(@RequestParam Map<String, String> data, HttpServletRequest request){
+
+        return userController.deleteUser(data,request);
+    }
+
+
+
 
 
     //----Restaurant----

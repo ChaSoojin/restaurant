@@ -101,10 +101,17 @@ public class UserService {
 
     //4. Delete
     @Transactional
-    public int deletUser(String id) {
+    public void deletUser(String id,String pw, HttpServletRequest request) {
+        List<User> users = getUsers();
         User user = findUser(id);
-        repo.deleteById(user.getNo());
-        return user.getNo();
+
+            if (user.getPw().equals(pw)) {
+
+                repo.deleteById(user.getNo());
+
+                HttpSession session= request.getSession();
+                session.removeAttribute("log");
+            }
     }
 
     public User getUser(String id) {
