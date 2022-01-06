@@ -148,6 +148,4 @@
     </div>
 </section>
 
-<input type="button" value="수정하기" onclick="location.href='userUpdatePage?id=logValue'">
-
 <c:import url="/WEB-INF/views/layout/footer.jsp"/>

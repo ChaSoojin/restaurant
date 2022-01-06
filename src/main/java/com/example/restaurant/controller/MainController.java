@@ -3,6 +3,7 @@ package com.example.restaurant.controller;
 import com.example.restaurant.domain.Review;
 import com.example.restaurant.domain.UserRequestDto;
 import com.example.restaurant.service.ReviewService;
+import com.example.restaurant.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ public class MainController {
     private final UserController userController;
     private final ReviewController reviewController;
     private final ReviewService service;
+    private final UserService userService;
     private final ShopController shopController;
 
     @GetMapping("/")
@@ -123,6 +125,8 @@ public class MainController {
     public String reserveData(@RequestParam Map<String, String> formdata, HttpServletRequest request, HttpServletResponse response) throws IOException {
         return reserveController.reserveData(formdata, request, response);
     }
+
+
 
 
     //----Review----

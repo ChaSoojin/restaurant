@@ -15,7 +15,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class UserService {
-
     private final UserRepository repo;
 
     //Service 클래스는 비지니스로직을 담음
@@ -69,7 +68,11 @@ public class UserService {
             if (user.getId().equals(id) && user.getPw().equals(pw)) {
                 System.out.println("ID: " + id + " PW: " + pw + " 유저아이디: " + user.getId() + " 유저비번: " + user.getPw());
 
+                int seperate = getSeparate(id);
                 request.setAttribute("message", "로그인하셨습니다.");
+
+                HttpSession session = request.getSession();
+                session.setAttribute("seperate", seperate);
                 logCheck = id;
             } else {
                 request.setAttribute("message", "로그인에 실패했습니다.");
@@ -123,4 +126,8 @@ public class UserService {
         return user;
     }
 
+    public int getSeparate(String id){
+        User user = findUser(id);
+        return user.getSeparate();
+    }
 }

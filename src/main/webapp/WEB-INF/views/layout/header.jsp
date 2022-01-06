@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
 <head>
@@ -47,6 +48,9 @@
                             <button class="rd-navbar-collapse-toggle rd-navbar-fixed-element-1" data-rd-navbar-toggle="#rd-navbar-collapse-content"><span></span></button>
                             <div class="rd-navbar-collapse-content" id="rd-navbar-collapse-content">
                                 <%
+                                    String seperate = String.valueOf(session.getAttribute("seperate"));
+                                    System.out.println("separate: " + seperate);
+
                                     if(session.getAttribute("log") == null){
 
                                 %>
@@ -54,12 +58,19 @@
                                 <a class="button button-primary button-winona" href="/join">회원가입</a>
 
                                 <%
-                                }else {
+
+                                    }else if(seperate.equals("2")){
                                 %>
-                                // 사장일때만 나오게 하고 싶음
-                                <a class="button button-primary-outline button-winona" href="/ownerPage">사장페이지</a>
-                                <a class="button button-primary-outline button-winona" href="/userMyPage">마이페이지</a>
-                                <a class="button button-primary button-winona" href="/logoutPro">로그아웃</a>
+
+                                    <a class="button button-primary-outline button-winona" href="/ownerPage">사장페이지</a>
+                                    <a class="button button-primary button-winona" href="/logoutPro">로그아웃</a>
+
+
+                                <%
+                                    }else if(seperate.equals("1")){
+                                %>
+                                    <a class="button button-primary-outline button-winona" href="/userMyPage">마이페이지</a>
+                                    <a class="button button-primary button-winona" href="/logoutPro">로그아웃</a>
                                 <%
                                     }
                                 %>
@@ -85,20 +96,20 @@
                             <ul class="rd-navbar-nav">
                                 <li class="rd-nav-item active"><a class="rd-nav-link" href="/">홈</a>
                                 </li>
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="#">맛집검색</a>
+                                <li class="rd-nav-item"><a class="rd-nav-link" href="#">맛집예약</a>
                                     <ul class="rd-menu rd-navbar-dropdown">
                                         <li class="rd-dropdown-item">
                                             <a class="rd-dropdown-link" href="/restaurantSearch">
-                                                맛집찾기
+                                                예약 바로가기
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="rd-nav-item"><a class="rd-nav-link" href="#">맛집예약</a>
+                                <li class="rd-nav-item"><a class="rd-nav-link" href="#">맛집찜하기</a>
                                     <ul class="rd-menu rd-navbar-dropdown">
                                         <li class="rd-dropdown-item">
                                             <a class="rd-dropdown-link" href="#">
-                                                예약 바로가기
+                                                찜하러 바로가기
                                             </a>
                                         </li>
                                     </ul>
