@@ -40,7 +40,7 @@
                     <td><c:out value="${reserve.getPhone()}"/> </td>
                     <td><c:out value="${reserve.getReserve_time()}"/> </td>
                     <td><c:out value="${reserve.getCnt()}명"/> </td>
-                    <td><input type="button" value="완료" onclick=""></td>
+                    <td><input type="button" value="완료" onclick="location.href='deleteReserve?restaurant_id=${reserve.getRestaurant_id()}&no=${reserve.getNo()}'"></td>
                 </tr>
             </c:forEach>
             </tbody>

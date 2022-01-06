@@ -25,18 +25,28 @@ public class Review extends Timestamped {
     @Column
     private int likes, view;
 
+    @Column
+    private String comment;
+
     public Review(ReviewRequestDto reviewRequestDto){
         this.user_id = reviewRequestDto.getUser_id();
         this.restaurant_id = reviewRequestDto.getRestaurant_id();
         this.title = reviewRequestDto.getTitle();
         this.content = reviewRequestDto.getContent();
         this.likes = reviewRequestDto.getLikes();
+        this.comment = reviewRequestDto.getComment();
     }
+
     public void update(ReviewRequestDto reviewRequestDto){
         this.title = reviewRequestDto.getTitle();
         this.content = reviewRequestDto.getContent();
     }
+
     public void updateView(int viewNo){
         this.view = viewNo;
+    }
+
+    public void updateComment(String comment){
+        this.comment = comment;
     }
 }

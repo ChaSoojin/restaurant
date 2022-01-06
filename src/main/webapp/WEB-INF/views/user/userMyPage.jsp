@@ -77,11 +77,11 @@
                             <br>
                         </div>
                         <div class="tab-pane fade" id="tabs-1-2">
-                            <form method="post" action="userUpdatePro.jsp?num=0">
-                                <span>ID:&#9;</span><input type='text' name='id' value="id" readonly required><br><br>
+                            <form method="post" action="deleteUser">
+                                <span>ID:&#9;</span><input type='text' name='id' name="id" required><br><br>
                                 <span>&#9;PW:&#9;</span><input type='password' name='pw' required><br><br>
-                                <input type="hidden" id="num" name="num" value="<%=request.getParameter("num")%>"><br>
-                                <input type="submit" value="탈퇴하기">
+                                <%--                                <input type="hidden" id="num" name="num" value=<c:out value="${review.getNo()}"/>><br>--%>
+                                <input type="submit" value="탈퇴하기" >
                             </form>
                         </div>
 

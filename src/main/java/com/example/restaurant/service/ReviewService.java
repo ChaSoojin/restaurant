@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -53,5 +54,37 @@ public class ReviewService {
         Review review = getReview(no);
         repo.deleteById(review.getNo());
         return review.getNo();
+    }
+
+    // ----- 사장페이지 관련 ------
+
+    // 레스토랑 id 로 리뷰내역 조회
+    public List<Review> getMyReviewByRestaurantId(String restaurant_id){
+        List<Review> reviewList = repo.findAll();
+        List<Review> result = new ArrayList<>();
+
+        for(Review r : reviewList){
+            System.out.println(r.getTitle());
+            if(r.getRestaurant_id().equals(restaurant_id)){
+                result.add(r);
+            }
+        }
+        return result;
+    }
+
+    // update comment
+    @Transactional
+    public boolean updateComment(int no, String comment){
+        Review review = getReview(no);
+        review.updateComment(comment);
+        return true;
+    }
+
+    public Review getReviewWithoutView(int no){
+        Review review = null;
+        review = repo.findById(no).orElseThrow(
+                () -> new IllegalArgumentException("존재하지 않는 리뷰입니다.")
+        );
+        return review;
     }
 }

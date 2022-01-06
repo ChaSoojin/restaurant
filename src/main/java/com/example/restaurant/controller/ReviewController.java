@@ -120,4 +120,13 @@ public class ReviewController {
 
         return "user/userMyPage";
     }
+
+    //-------
+
+    // 사장 / name 리뷰로 준거 안그러면 리스트로 넘어감
+    public String ownerGetReviews(HttpServletRequest request){
+        List<Review> review = service.getReviews();
+        request.setAttribute("reivew", review);
+        return "review/reviewList";
+    }
 }

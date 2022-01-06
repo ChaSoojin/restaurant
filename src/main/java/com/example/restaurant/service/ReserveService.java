@@ -52,4 +52,10 @@ public class ReserveService {
         }
         return result;
     }
+
+//    @Transactional
+//    public boolean deleteReserve(int no){
+//        repo.deleteById(no);
+//        return true;
+//    }
 }

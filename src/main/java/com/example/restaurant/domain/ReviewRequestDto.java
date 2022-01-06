@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Getter
 public class ReviewRequestDto {
     private int no;
-    private String user_id,restaurant_id, title, content;
+    private String user_id,restaurant_id, title, content, comment;
     private int likes;
 
     public ReviewRequestDto(String user_id, String restaurant_id, String title, String content){
@@ -16,6 +16,15 @@ public class ReviewRequestDto {
         this.title = title;
         this.content = content;
     }
+
+    public ReviewRequestDto(String user_id, String restaurant_id, String title, String content, String comment){
+        this.user_id = user_id;
+        this.restaurant_id = restaurant_id;
+        this.title = title;
+        this.content = content;
+        this.comment = comment;
+    }
+
     //    public ReviewRequestDto(String user_id, String restaurant_id, String title, String content, int likes){
 //        this.user_id = user_id;
 //        this.restaurant_id = restaurant_id;

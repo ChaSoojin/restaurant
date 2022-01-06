@@ -37,41 +37,4 @@ public class RestaurantController {
 
         return "restaurant/restaurantDetail";
     }
-
-    // ------- 사장 페이지 관련 --------
-    // 내 레스토랑 추가하기 / 레스토랑 id로 레스토랑 불러오기
-    public String settingRestaurantForm(String restaurant_id, HttpServletRequest request){
-        List<Restaurant> restaurantList  = service.getRestaurant(restaurant_id);
-        request.setAttribute("restaurantList", restaurantList);
-
-        return "/user/ownerSettingRestaurant";
-    }
-
-    // 가게에 사장 ID 업데이트
-    public String setMyRestaurant(HttpServletRequest request){
-        String restaurant_id = request.getParameter("restaurant_id");
-        String user_id = request.getParameter("user_id");
-        service.updateOwner(restaurant_id,user_id);
-
-        service.getRestaurants(user_id, request);
-        return "user/ownerMyPage";
-    }
-
-    // 사장ID 로 가게 정보 불러오기
-    public String getRestaurantList(HttpServletRequest request){
-        String user_id = request.getParameter("user_id");
-
-        service.getRestaurants(user_id, request);
-        return "user/ownerMyPage";
-    }
-
-    // 가게에서 사장 ID 삭제하기
-    public String deleteRestaurantByUserid(HttpServletRequest request){
-        String restaurant_id = request.getParameter("restaurant_id"); // 레스토랑에서 user_id 지우기 위해
-        String user_id = request.getParameter("user_id"); // list 만들기 위해
-        service.deleteOwner(restaurant_id);
-
-        service.getRestaurants(user_id, request);
-        return "user/ownerMyPage";
-    }
 }
