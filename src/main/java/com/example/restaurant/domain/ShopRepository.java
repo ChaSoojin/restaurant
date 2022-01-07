@@ -9,4 +9,8 @@ public interface ShopRepository extends JpaRepository<Shop, Integer> {
     @Modifying
     @Query(value = "delete from shop colums where restaurant_id = ?1", nativeQuery = true)
     public void deleteByStringId(String id);
+
+    @Modifying
+    @Query(value = "delete from shop colums where user_id = ?1", nativeQuery = true)
+    public void deleteByAllId(String user_id);
 }

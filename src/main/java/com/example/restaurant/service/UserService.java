@@ -14,10 +14,12 @@ import java.util.List;
 @Service
 public class UserService {
     private final UserRepository userRepo;
-    private final RestaurantRepository reserveRepo;
-    private final ReviewRepository restaurantRepo;
+    private final ReserveRepository reserveRepo;
     private final ShopRepository shopRepo;
+    private final ReviewRepository reviewRepo;
 
+
+    private final ReviewService reviewService;
 
     //Service 클래스는 비지니스로직을 담음
 
@@ -41,24 +43,40 @@ public class UserService {
     public User findUser(String id) {
         List<User> users = getUsers();
 
-
         for (User user : users) {
             if (user.getId().equals(id)) {
-
-//                HttpSession session = request.getSession();
-//                session.setAttribute("log",id);
                 return user;
             }
         }
-
         return null;
     }
+
+
+
+    public Review findReview(String id){
+        List<Review> reviews =getReviews();
+
+        for(Review review : reviews){
+            if(review.getUser_id().equals(id)){
+                return review;
+            }
+        }
+        return null;
+    }
+
 
     //유저 들!!
     public List<User> getUsers() {
         List<User> users = null;
         users = userRepo.findAll();
         return users;
+    }
+
+    //아이디값으로 찾은 리뷰들!!
+    public List<Review> getReviews() {
+        List<Review> reviews = null;
+        reviews = reviewRepo.findAll();
+        return reviews;
     }
 
     public boolean checkLogin(String id, String pw, HttpServletRequest request) {
@@ -109,10 +127,17 @@ public class UserService {
     public void deletUser(String id,String pw, HttpServletRequest request) {
         List<User> users = getUsers();
         User user = findUser(id);
+        System.out.println();
+        Review review = findReview(id);
 
             if (user.getPw().equals(pw)) {
 
                 userRepo.deleteById(user.getNo());
+
+                reserveRepo.deleteByAllId(id);
+
+                reviewRepo.deleteByAllId(id);
+                shopRepo.deleteByAllId(id);
 
                 HttpSession session= request.getSession();
                 session.removeAttribute("log");
