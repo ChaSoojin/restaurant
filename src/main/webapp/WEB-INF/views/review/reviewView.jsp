@@ -10,13 +10,15 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="script/review.js"></script>
+<%--    <script src="script/review.js"></script>--%>
     <title>Review View</title>
 </head>
 
 
 <c:set var="user_id" value="${sessionScope.log}"/>
-<c:set var="review_id" value="${review.getUser_id()}"/>
+<c:set var="review_no" value="${review.getNo()}"/>
+<c:out value="user_id:${user_id} review_no:${review_no}"/>
+
 <div style=" border-top:1px solid black;  ">
 
 </div>
@@ -32,20 +34,35 @@
         <span style="margin-right:30px;">제목 : <c:out value="${review.getTitle()}"/></span>
         <span style="margin-right:30px;">ID :  <c:out value="${review.getUser_id()}"/> </span>
         <span style="margin-right:30px;">등록일 : <c:out value="${review.getModified_at()}"/> </span>
-        <c:if test="${ like gt 0 }"> <%--  --%>
-            <a href=""><img src="<c:url value='/static/like/like.png'/>" style="width:46px; height:46px" id="like" data-like="N"></a>
-        </c:if>
-        <c:if test="${ like lt 1 }">
-            <img src="<c:url value='/static/like/default_like.png'/>" style="width:46px; height:46px" id="like" data-like="N">
-        </c:if>
     </div>
 
-    <table style="margin : 40px 0px;">
-        <tr>
-            <td width="130px;"><img src="${map.bookImg }" style="height:173px;"/></td>
-            <td><c:out value="${review.getContent()}"/><td>
-        </tr>
-    </table>
+<%--    <table style="margin : 40px 0px;">--%>
+<%--        <tr>--%>
+<%--            <td width="130px;"><img src="${map.bookImg }" style="height:173px;"/></td>--%>
+<%--            <td><c:out value="${review.getContent()}"/><td>--%>
+<%--        </tr>--%>
+<%--    </table>--%>
+
+            <c:if test="${not empty user_id}">
+                <div style="border: 2px solid #32383e; padding: 13px">
+                    좋아요를 눌러주세요! ⮕
+
+                    <%-- 좋아요 눌러져 있는 상태 --%>
+                    <c:if test="${like_exist eq 'true'}">
+                        <%-- reviewLike 테이블에서 삭제 --%>
+                        <a href="/deleteLike?no=${review.getNo()}"><img src="<c:url value='like/like.png'/>" style="width:46px; height:46px" id="like1" data-like="N"></a>
+                    </c:if>
+
+                    <%-- 좋아요 안눌러져 있는 상태 --%>
+                    <c:if test="${like_exist eq 'false'}">
+                        <%-- reviewLike 테이블에 추가 --%>
+                        reviewLike 테이블에 추가
+                        <a href="/addLike?no=${review.getNo()}"><img src="<c:url value='like/default_like.png'/>" style="width:46px; height:46px" id="like2" data-like="N"></a>
+                    </c:if>
+                </div>
+            </c:if>
+
+<br><br>
             <h3>⬇︎ 사장님 댓글 ⬇︎</h3>
             <div style="border: 2px solid tan; padding: 10px">
                 <c:choose>

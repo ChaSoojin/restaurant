@@ -71,6 +71,24 @@ public class ReviewService {
         return review;
     }
 
+    // 좋아요 + 1
+    @Transactional
+    public boolean addLike(int no){
+        Review review = getReview(no);
+        int likes = review.getLikes() + 1;
+        review.updateLike(likes);
+        return true;
+    }
+
+    // 좋아요 - 1
+    @Transactional
+    public boolean minusLike(int no){
+        Review review = getReview(no);
+        int likes = review.getLikes() - 1;
+        review.updateLike(likes);
+        return true;
+    }
+
     // ----- 사장페이지 관련 ------
 
     // 레스토랑 id 로 리뷰list 조회

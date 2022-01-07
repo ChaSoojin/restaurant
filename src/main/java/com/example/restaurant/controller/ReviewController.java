@@ -123,6 +123,14 @@ public class ReviewController {
         return "user/userMyPage";
     }
 
+    // Like + -
+    public boolean addLike(int no){
+        return service.addLike(no);
+    }
+    public boolean minusLike(int no){
+        return service.minusLike(no);
+    }
+
     //----- 사장 리뷰 확인용 -----
 
     // 사장 / name 리뷰로 준거 안그러면 리스트로 넘어감

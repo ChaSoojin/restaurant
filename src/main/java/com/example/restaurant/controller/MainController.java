@@ -30,6 +30,7 @@ public class MainController {
     private final ReviewService service;
     private final UserService userService;
     private final ShopController shopController;
+    private final ReviewLikeController reviewLikeController;
 
     @GetMapping("/")
     public String main() {
@@ -154,6 +155,10 @@ public class MainController {
 
     @GetMapping("/reviewView")
     public String reviewView(@RequestParam int no, HttpServletRequest request){
+
+        // 리뷰 디테일로 넘어갈때 reviewLike 정보도 넘겨주어야 함 by user_id , review_no
+        reviewLikeController.existData(request);
+        // review data by review_no
         return reviewController.getReview(no, request);
     }
     @GetMapping("/reviewDelete")
@@ -168,6 +173,25 @@ public class MainController {
     @PostMapping("/update")
     public String reviewUpdate(@RequestParam Map<String,String> formdata, HttpServletRequest request){
         return reviewController.reviewUpdate(formdata, request);
+    }
+
+    // 좋아요 추가
+    @GetMapping("/addLike")
+    public String addLike(@RequestParam int no, HttpServletRequest request){
+        // 여긴 반대로 리뷰 정보 넘겨줘야 리뷰 페이지 불러오기 가능
+        reviewLikeController.addLike(request); // 더하고
+        reviewController.addLike(no);
+        reviewLikeController.existData(request); // likeData 가져오고
+        return reviewController.getReview(no, request); // 리뷰 가져오고
+    }
+    // 좋아요 삭제
+    @GetMapping("/deleteLike")
+    public String deleteLike(@RequestParam int no, HttpServletRequest request){
+        // 여긴 반대로 리뷰 정보 넘겨줘야 리뷰 페이지 불러오기 가능
+        reviewLikeController.deleteLike(request);// 빼고
+        reviewController.minusLike(no);
+        reviewLikeController.existData(request); // likeData 가져오고
+        return reviewController.getReview(no, request); // reviewData 가져오고 이동
     }
 
     // ----- 사장페이지 ----

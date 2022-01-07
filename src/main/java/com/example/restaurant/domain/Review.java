@@ -46,6 +46,10 @@ public class Review extends Timestamped {
         this.view = viewNo;
     }
 
+    public void updateLike(int likes){
+        this.likes = likes;
+    }
+
     public void updateComment(String comment){
         this.comment = comment;
     }
