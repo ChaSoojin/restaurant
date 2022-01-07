@@ -32,12 +32,12 @@
         <span style="margin-right:30px;">제목 : <c:out value="${review.getTitle()}"/></span>
         <span style="margin-right:30px;">ID :  <c:out value="${review.getUser_id()}"/> </span>
         <span style="margin-right:30px;">등록일 : <c:out value="${review.getModified_at()}"/> </span>
-<%--        <c:if test="${ like gt 0 }">--%>
-<%--            <img src="<c:url value='/resources/like/like.png'/>" style="width:46px; height:46px" id="like" data-like="N">--%>
-<%--        </c:if>--%>
-<%--        <c:if test="${ like lt 1 }">--%>
-<%--            <img src="<c:url value='/resources/like/default_like.png'/>" style="width:46px; height:46px" id="like" data-like="N">--%>
-<%--        </c:if>--%>
+        <c:if test="${ like gt 0 }"> <%--  --%>
+            <a href=""><img src="<c:url value='/static/like/like.png'/>" style="width:46px; height:46px" id="like" data-like="N"></a>
+        </c:if>
+        <c:if test="${ like lt 1 }">
+            <img src="<c:url value='/static/like/default_like.png'/>" style="width:46px; height:46px" id="like" data-like="N">
+        </c:if>
     </div>
 
     <table style="margin : 40px 0px;">
@@ -46,6 +46,18 @@
             <td><c:out value="${review.getContent()}"/><td>
         </tr>
     </table>
+            <h3>⬇︎ 사장님 댓글 ⬇︎</h3>
+            <div style="border: 2px solid tan; padding: 10px">
+                <c:choose>
+                    <c:when test="${empty review.getComment()}">
+                        <span style="color: #6c757d">작성된 댓글이 없습니다.</span>
+                    </c:when>
+                    <c:otherwise>
+                        <c:out value="${review.getComment()}"/>
+                    </c:otherwise>
+                </c:choose>
+
+            </div>
 
     <div style="padding-top: 20px; border-top:1px solid black; height:300px; margin-bottom: 40px; ">
         ${map.bookRev}

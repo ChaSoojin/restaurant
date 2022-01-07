@@ -13,13 +13,7 @@
   <title>Owner MyPage</title>
 </head>
 <body>
-<%--<h1>사장님 페이지</h1>--%>
-<%--<%--%>
-<%--  String id = (String)session.getAttribute("log");--%>
-<%--//  String id = "banana";--%>
-<%--//  String id = "brown";--%>
-<%--  session.setAttribute("log", id);--%>
-<%--%>--%>
+
 <c:set var="user_id" value="${sessionScope.log}"/>
 
 <h1>${user_id}사장님 안녕하세요 :)</h1>

@@ -59,7 +59,7 @@ public class ReviewService {
 
     // ----- 사장페이지 관련 ------
 
-    // 레스토랑 id 로 리뷰내역 조회
+    // 레스토랑 id 로 리뷰list 조회
     public boolean getMyReviewByRestaurantId(HttpServletRequest request){
         String restaurant_id = request.getParameter("restaurant_id");
         List<Review> reviewList = repo.findAll();
@@ -74,19 +74,26 @@ public class ReviewService {
         return true;
     }
 
-    // update comment
-    @Transactional
-    public boolean updateComment(int no, String comment){
-        Review review = getReview(no);
-        review.updateComment(comment);
-        return true;
-    }
-
-    public Review getReviewWithoutView(int no){
+    // 리뷰 리스트 -> 상세 리뷰
+    public Review getReviewWithoutView(HttpServletRequest request){
+        int no = Integer.parseInt(request.getParameter("no"));
         Review review = null;
         review = repo.findById(no).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 리뷰입니다.")
         );
+        request.setAttribute("review", review);
         return review;
     }
+
+    // update comment
+    @Transactional
+    public boolean updateComment(HttpServletRequest request){
+        int no = Integer.parseInt(request.getParameter("no"));
+        String comment = request.getParameter("comment");
+        Review review = getReviewWithoutView(request);
+        review.updateComment(comment);
+        return true;
+    }
+
+
 }

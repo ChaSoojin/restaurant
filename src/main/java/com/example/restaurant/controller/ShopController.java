@@ -1,6 +1,8 @@
 package com.example.restaurant.controller;
 
 import com.example.restaurant.domain.*;
+import com.example.restaurant.service.ReserveService;
+import com.example.restaurant.service.ReviewService;
 import com.example.restaurant.service.ShopService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -10,14 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
 @Controller
 public class ShopController {
-    private final ShopRepository repo;
     private final ShopService service;
+    private final ReviewService reviewService;
+    private final ReserveService reserveService;
+    private final UserController userController;
 
     @PostMapping("/shopSave")
     public boolean addUser(@RequestBody ShopRequestDto shopRequestDto, HttpServletRequest request) {
@@ -44,7 +49,39 @@ public class ShopController {
 //    }
 
     // 사장ID 로 가게 정보 불러와서 리스트로 들어감
-    public String getShopList(HttpServletRequest request){
+//    public String getShopList(HttpServletRequest request){
+//        service.getShops(request); // 리스트 받아오기
+//        return "user/ownerMyShopListPage";
+//    }
+    // 원래 위에꺼지만 아래꺼로 수정!
+    public String getMyDatas(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String user_id = (String)session.getAttribute("log");
+
+        List<Review> reviewList = reviewService.getReviews();
+        List<Review> result = new ArrayList<>();
+
+        List<Reserve> reserveList = reserveService.getMyReserve(user_id);
+        List<Reserve> result2 = new ArrayList<>();
+
+        for(Review r : reviewList){
+            if(r.getUser_id().equals(user_id)){
+                result.add(r);
+                System.out.println("ID: " + r.getUser_id() + " Title: " + r.getTitle());
+            }
+        }
+
+        for(Reserve r2 : reserveList){
+            result2.add(r2);
+            System.out.println("ID: " + r2.getUser_id() + " --- 식당: " + r2.getRestaurant_name());
+        }
+
+        System.out.println("리스트: " + result.size());
+        System.out.println("리스트2: " + result2.size());
+
+        request.setAttribute("myreview", result);
+        request.setAttribute("myreserve", result2);
+        userController.getUser(request);
         service.getShops(request); // 리스트 받아오기
         return "user/ownerMyShopListPage";
     }

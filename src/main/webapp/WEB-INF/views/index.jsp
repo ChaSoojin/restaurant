@@ -14,12 +14,12 @@
 <%--    session.setAttribute("log","apple");--%>
 <%--%>--%>
 
-<%
-    //String log = (String)session.getAttribute("id");
-    String id = "banana";
-//    String id = "brown";
-    session.setAttribute("log", id);
-%>
+<%--<%--%>
+<%--    //String log = (String)session.getAttribute("id");--%>
+<%--    String id = "banana";--%>
+<%--//    String id = "brown";--%>
+<%--    session.setAttribute("log", id);--%>
+<%--%>--%>
 
 // list 주려면 밑에 이거 꼭 있어야 함
 <c:set var="user_id" value="${sessionScope.log}"/>

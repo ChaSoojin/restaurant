@@ -10,14 +10,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="script/review.js"></script>
     <title>Review View</title>
 </head>
 <body>
-<%
-    session.setAttribute("log","apple");
-%>
-<c:set var="user_id" value="${sessionScope.log}"/>
 <c:set var="review_id" value="${review.getUser_id()}"/>
 <%--    <c:out value="user_id: ${user_id}"/><br>--%>
 <%--    <c:out value="review_id: ${review_id}"/><br>--%>
@@ -51,6 +46,7 @@
     <h3>사장님, 댓글을 달아주세요!</h3>
     <form method="post" action="ownerReviewUpdate">
         <input type="hidden" name="no" value="${review.getNo()}">
+<%--        <input type="hidden" name="restaurant_id" value="${review.getRestaurant_id()}">--%>
         <textarea name="comment" id="comment" rows="10" cols="60">${review.getComment()}</textarea><br><br>
         <input type="submit" value="수정하기">
     </form>

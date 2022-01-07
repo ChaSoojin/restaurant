@@ -137,4 +137,17 @@ public class ReviewController {
         service.getMyReviewByRestaurantId(request);
         return "user/ownerReview";
     }
+
+    // 상세 리뷰 가지고 오기 위해 하나의 리뷰 저장!
+    public String ownerReviewView(HttpServletRequest request){
+        service.getReviewWithoutView(request);
+        return "user/ownerReviewViewPage";
+    }
+
+    // comment update
+    public String ownerReviewUpdate(HttpServletRequest request){
+        service.updateComment(request);
+        service.getReviewWithoutView(request); // 원래페이지로 돌아가기 위한 리뷰 저장
+        return "user/ownerReviewViewPage";
+    }
 }
