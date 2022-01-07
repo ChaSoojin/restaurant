@@ -1,9 +1,7 @@
 package com.example.restaurant.service;
 
 
-import com.example.restaurant.domain.User;
-import com.example.restaurant.domain.UserRepository;
-import com.example.restaurant.domain.UserRequestDto;
+import com.example.restaurant.domain.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +13,11 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class UserService {
-    private final UserRepository repo;
+    private final UserRepository userRepo;
+    private final RestaurantRepository reserveRepo;
+    private final ReviewRepository restaurantRepo;
+    private final ShopRepository shopRepo;
+
 
     //Service 클래스는 비지니스로직을 담음
 
@@ -55,7 +57,7 @@ public class UserService {
     //유저 들!!
     public List<User> getUsers() {
         List<User> users = null;
-        users = repo.findAll();
+        users = userRepo.findAll();
         return users;
     }
 
@@ -110,7 +112,7 @@ public class UserService {
 
             if (user.getPw().equals(pw)) {
 
-                repo.deleteById(user.getNo());
+                userRepo.deleteById(user.getNo());
 
                 HttpSession session= request.getSession();
                 session.removeAttribute("log");
@@ -119,7 +121,7 @@ public class UserService {
 
     public User getUser(String id) {
         User user = findUser(id);
-        user = repo.findById(user.getNo()).orElseThrow(
+        user = userRepo.findById(user.getNo()).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 리뷰입니다.")
         );
 
