@@ -60,7 +60,7 @@
             </div>
 
     <div style="padding-top: 20px; border-top:1px solid black; height:300px; margin-bottom: 40px; ">
-        ${map.bookRev}
+<%--       이자리에 사장님 코멘트 넣으면될듯 ${map.bookRev}--%>
     </div>
 
 

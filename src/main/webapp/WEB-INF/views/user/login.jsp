@@ -28,12 +28,12 @@
                         <div class="tab-pane fade show active in" id="tabs-1-1">
                             <form class="usrLoginForm" name="usrLoginForm" id="usrLoginForm" action="loginProM" method="post">
                                 <label class="form-label-outside">아이디</label>
-                                <input class="form-input form-control-has-validation form-control-last-child" type="text" id="id" name="id" placeholder="영문자 또는 숫자 6~20자리 조합">
+                                <input class="form-input form-control-has-validation form-control-last-child" type="text" id="id" name="id" placeholder="영문(대소문자) 또는 숫자 4~12자리 조합">
                                 <span id="idCheck"></span>
                                 <br>
 
                                 <label class="form-label-outside">비밀번호</label>
-                                <input class="form-input form-control-has-validation form-control-last-child" type="password" id="pw" name="pw" placeholder="영문자+숫자+특수문자 8~16자리 조합">
+                                <input class="form-input form-control-has-validation form-control-last-child" type="password" id="pw" name="pw" placeholder="영문(대소문자) 또는 숫자 4~12자리 조합">
                                 <span id="pwCheck"></span>
                                 <br >
 
