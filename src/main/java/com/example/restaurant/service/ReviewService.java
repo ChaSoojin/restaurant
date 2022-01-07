@@ -57,6 +57,20 @@ public class ReviewService {
         return review.getNo();
     }
 
+    public List<Review> getReviewByRestaurantId(HttpServletRequest request){
+        String restaurant_id = request.getParameter("restaurant_id");
+        List<Review> reviewList = repo.findAll();
+        List<Review> review = new ArrayList<>();
+
+        for(Review r : reviewList){
+            if(r.getRestaurant_id().equals(restaurant_id)){
+                System.out.println("ID: " + restaurant_id + " NAME: " + r.getTitle());
+                review.add(r);
+            }
+        }
+        return review;
+    }
+
     // ----- 사장페이지 관련 ------
 
     // 레스토랑 id 로 리뷰list 조회

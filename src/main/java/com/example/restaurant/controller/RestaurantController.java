@@ -2,7 +2,9 @@ package com.example.restaurant.controller;
 
 import com.example.restaurant.domain.Restaurant;
 import com.example.restaurant.domain.RestaurantRequestDto;
+import com.example.restaurant.domain.Review;
 import com.example.restaurant.service.RestaurantService;
+import com.example.restaurant.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,7 @@ import java.util.Map;
 @RestController
 public class RestaurantController {
     private final RestaurantService service;
+    private final ReviewService reviewService;
 
     @PostMapping("/restaurantSearch")
     public Restaurant addRestaurant(@RequestParam Map<String, String> data){
@@ -33,7 +36,10 @@ public class RestaurantController {
     public String resDetail(String restaurant_id, HttpServletRequest request){
         System.out.println("ID: " + restaurant_id);
         List<Restaurant> restaurantList  = service.getRestaurant(restaurant_id);
+        List<Review> reviewList = reviewService.getReviewByRestaurantId(request);
+
         request.setAttribute("restaurant", restaurantList);
+        request.setAttribute("reviewList", reviewList);
 
         return "restaurant/restaurantDetail";
     }

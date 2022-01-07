@@ -4,6 +4,7 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 <c:import url="/WEB-INF/views/layout/header.jsp"/>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -40,6 +41,31 @@
 </table>
 <br><br>
 <div id="map" style="width:1000px;height:500px; display:inline-block;"></div>
+
+
+<table class="table table-hover table-job-positions text-center">
+    <thead class="thead_top">
+    <tr>
+        <th>No</th>
+        <th>Title</th>
+        <th>ID</th>
+        <th>Like</th>
+        <th>View</th>
+        <th>Date</th>
+    </tr>
+    </thead>
+    <c:forEach items="${reviewList }" var="review">
+        <tr  method="post" onclick="location.href='reviewView?no=<c:out value="${review.getNo()}"/>'">
+            <td ><c:out value="${review.getNo()}"/></td>
+            <td><c:out value="${review.getTitle()}"/></td>
+            <td><c:out value="${review.getUser_id()}"/></td>
+            <td><c:out value="${review.getLikes()}"/></td>
+            <td><c:out value="${review.getView()}"/></td>
+            <td><c:out value="${review.getModified_at()}"/></td>
+        </tr>
+    </c:forEach>
+</table>
+
 
 <script src="script/restaurantMap.js"></script>
 </body>

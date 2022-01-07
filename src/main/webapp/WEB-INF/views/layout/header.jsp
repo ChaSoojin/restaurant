@@ -123,12 +123,27 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <%
+                                    if(seperate.equals("1")){
+                                %>
                                 <li class="rd-nav-item"><a class="rd-nav-link" href="#">마이페이지</a>
                                     <ul class="rd-menu rd-navbar-dropdown">
                                         <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="/userMyPage">마이페이지</a>
                                         </li>
                                     </ul>
                                 </li>
+                                <%
+                                }else if(seperate.equals("2")){
+                                %>
+                                <li class="rd-nav-item"><a class="rd-nav-link" href="#">사장페이지</a>
+                                    <ul class="rd-menu rd-navbar-dropdown">
+                                        <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="/ownerPage">사장페이지</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <%
+                                    }
+                                %>
                             </ul>
                         </div>
                     </div>
