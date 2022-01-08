@@ -3,13 +3,14 @@ function join(form) {
     let check = false;
 
     //유효성검사
-    if(checkVal(form)){
-        check=true;
-    };
+    if (checkVal(form)) {
+        check = true;
+    }
+    ;
     // alert("체크통과")
 
     //유효성검사 통과했을시
-    if(check===true){
+    if (check === true) {
         let id = form.id.value;
         let pw = form.pw1.value;
         let name = form.name.value;
@@ -18,46 +19,41 @@ function join(form) {
         let email = form.email.value;
 
         $.ajax({
-            url:'/v1/users',
-            contentType : 'application/json; charset=utf-8',
-            method : 'POST',
-            data : JSON.stringify({
-                id : id,
-                pw : pw,
-                name : name,
-                separate : separate,
-                phone : phone,
-                email : email
+            url: '/v1/users',
+            contentType: 'application/json; charset=utf-8',
+            method: 'POST',
+            data: JSON.stringify({
+                id: id,
+                pw: pw,
+                name: name,
+                separate: separate,
+                phone: phone,
+                email: email
             })
-        }).done(res =>{
+        }).done(res => {
             // alert(res);
 
-            if(res){
+            if (res) {
                 location.href = "/login";
-            }
-            else{
+            } else {
                 alert("이미 사용중인 아이디입니다.");
             }
         })
-    }}
+    }
+}
 
 
 function checkVal(form) {
     console.log("checkVal")
     if (!checkId(form)) {
         return false;
-    }
-    else if (!checkPw(form)) {
+    } else if (!checkPw(form)) {
         return false;
-    }
-    else if (!checkName(form)) {
+    } else if (!checkName(form)) {
         return false;
-    }
-    else if (!checkPhone(form)) {
+    } else if (!checkPhone(form)) {
         return false;
-    }
-
-    else if (!checkMail(form)) {
+    } else if (!checkMail(form)) {
         return false;
     }
     // else if (!checkPhonnumber(form)) {
@@ -89,8 +85,8 @@ function checkId(inputValue) {
 
 
         const form = document.info;
-        form.id.value = "";      //input태그 name=id 인곳 공백만듬
-        form.id.focus();        //포커스잡아줌
+        form.id.value = "";
+        form.id.focus();
         return false;
     }
     return true;
@@ -163,8 +159,8 @@ function checkName(form) {
     return true;
 }
 
-function checkPhone(form){
-    if(!checknull(form.phone.value)) {
+function checkPhone(form) {
+    if (!checknull(form.phone.value)) {
         alert("전화번호가 공백입니다")
         // const form = document.info;
         form.phone.value = "";      //input태그 email이 email 인곳 공백만듬
@@ -185,8 +181,6 @@ function checkPhone(form){
     return true;
 
 }
-
-
 
 //메일 검사
 function checkMail(form) {

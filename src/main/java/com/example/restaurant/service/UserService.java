@@ -35,7 +35,6 @@ public class UserService {
                 chk = false;
             }
         }
-
         return chk;
     }
 
@@ -51,13 +50,11 @@ public class UserService {
         return null;
     }
 
+    public Review findReview(String id) {
+        List<Review> reviews = getReviews();
 
-
-    public Review findReview(String id){
-        List<Review> reviews =getReviews();
-
-        for(Review review : reviews){
-            if(review.getUser_id().equals(id)){
+        for (Review review : reviews) {
+            if (review.getUser_id().equals(id)) {
                 return review;
             }
         }
@@ -111,37 +108,33 @@ public class UserService {
 
 
     // 3. Update
-    @Transactional  //기존의 테이블에 쿼리가 일어나야함을 알려줌
+    @Transactional                                                  //기존의 테이블에 쿼리의 변화 일어나야함
     public boolean updateUser(String id, UserRequestDto dto) {
         User user = findUser(id);
-//        User user2 = repo.findById(user.getNo()).orElse(
-//                () -> new IllegalArgumentException("존재하지 않는 사용자입니다.")
-//        );
-        System.out.println("dto:::::" + dto);
         user.update(dto);
         return true;
     }
 
     //4. Delete
     @Transactional
-    public void deletUser(String id,String pw, HttpServletRequest request) {
+    public void deletUser(String id, String pw, HttpServletRequest request) {
         List<User> users = getUsers();
         User user = findUser(id);
         System.out.println();
         Review review = findReview(id);
 
-            if (user.getPw().equals(pw)) {
+        if (user.getPw().equals(pw)) {
 
-                userRepo.deleteById(user.getNo());
+            userRepo.deleteById(user.getNo());
 
-                reserveRepo.deleteByAllId(id);
+            reserveRepo.deleteByAllId(id);
 
-                reviewRepo.deleteByAllId(id);
-                shopRepo.deleteByAllId(id);
+            reviewRepo.deleteByAllId(id);
+            shopRepo.deleteByAllId(id);
 
-                HttpSession session= request.getSession();
-                session.removeAttribute("log");
-            }
+            HttpSession session = request.getSession();
+            session.removeAttribute("log");
+        }
     }
 
     public User getUser(String id) {
@@ -153,7 +146,7 @@ public class UserService {
         return user;
     }
 
-    public int getSeparate(String id){
+    public int getSeparate(String id) {
         User user = findUser(id);
         return user.getSeparate();
     }

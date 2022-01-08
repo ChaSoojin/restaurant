@@ -11,10 +11,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script type="text/javascript" src="script/validation.js"></script>
 
-    <script src = "script/join.js"></script>
+    <script src="script/join.js"></script>
     <title>Join</title>
 </head>
-<c:set var="path" value="${pageContext.request.contextPath}" />
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <%--<body>--%>
 <section class="section section-lg">
     <div class="container">
@@ -27,40 +27,42 @@
                         <div class="tab-pane fade show active in" id="tabs-1-1">
                             <form class="usrJoinForm" name="usrJoinForm" id="usrJoinForm" method="post">
                                 <label class="form-label-outside">아이디</label>
-                                <input class="form-input form-control-has-validation form-control-last-child" type="text" id="id" name="id" placeholder="영문(대소문자) 또는 숫자 4~12자리 조합">
+                                <input class="form-input form-control-has-validation form-control-last-child"
+                                       type="text" id="id" name="id" placeholder="영문(대소문자) 또는 숫자 4~12자리 조합">
                                 <span id="idCheck"></span>
                                 <br>
 
                                 <label class="form-label-outside">비밀번호</label>
-                                <input class="form-input form-control-has-validation form-control-last-child" type="password" id="pw1" name="pw1" placeholder="영문자(대소문자) 또는 숫자 4~12자리 조합">
+                                <input class="form-input form-control-has-validation form-control-last-child"
+                                       type="password" id="pw1" name="pw1" placeholder="영문자(대소문자) 또는 숫자 4~12자리 조합">
                                 <span id="pwCheck"></span>
-                                <br >
+                                <br>
 
                                 <label class="form-label-outside">비밀번호 확인</label>
-                                <input class="form-input form-control-has-validation form-control-last-child" type="password" id="pw2" name="pw2" placeholder="비밀번호를 확인해주세요."> <br>
+                                <input class="form-input form-control-has-validation form-control-last-child"
+                                       type="password" id="pw2" name="pw2" placeholder="비밀번호를 확인해주세요."> <br>
 
                                 <label class="form-label-outside">이름</label>
-                                <input class="form-input form-control-has-validation form-control-last-child" type="text" id="name" name="name" placeholder="이름을 입력해주세요.">
-                                <br >
-
-
+                                <input class="form-input form-control-has-validation form-control-last-child"
+                                       type="text" id="name" name="name" placeholder="이름을 입력해주세요.">
+                                <br>
 
                                 <label class="form-label-outside">일반회원</label>
-                                <input  type="radio"  name="separate" value="1">
-                                <br >
-                                <br >
+                                <input type="radio" name="separate" value="1">
+                                <br>
+                                <br>
                                 <label class="form-label-outside">사업자</label>
-                                <input  type="radio"  name="separate" value="2">
-                                <br >
-                                <br >
-
-
+                                <input type="radio" name="separate" value="2">
+                                <br>
+                                <br>
 
                                 <label class="form-label-outside">전화번호</label>
-                                <input class="form-input form-control-has-validation form-control-last-child" type="text" id="phone" name="phone" placeholder="전화번호를입력해주세요">
-                                <br >
+                                <input class="form-input form-control-has-validation form-control-last-child"
+                                       type="text" id="phone" name="phone" placeholder="전화번호를입력해주세요">
+                                <br>
                                 <label class="form-label-outside">이메일</label>
-                                <input class="form-input form-control-has-validation form-control-last-child" type="text" id="email" name="email" placeholder="메일주소를 입력해주세요.">
+                                <input class="form-input form-control-has-validation form-control-last-child"
+                                       type="text" id="email" name="email" placeholder="메일주소를 입력해주세요.">
                                 <span id="nameCheck"></span>
                                 <br>
                                 <input type="button" value="sign up" id="btn" onclick="join(form);">
@@ -72,22 +74,6 @@
         </div>
     </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <%--<div class="wrap">--%>
