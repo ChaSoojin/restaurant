@@ -31,7 +31,6 @@ public class ReviewService {
                 () -> new IllegalArgumentException("존재하지 않는 리뷰입니다.")
         );
         review.updateView(review.getView() + 1);
-        System.out.println(review.getView() + "개");
         return review;
     }
 
@@ -106,7 +105,7 @@ public class ReviewService {
         return true;
     }
 
-    // 리뷰 리스트 -> 상세 리뷰
+    // 리뷰 리스트 -> 상세 리뷰 (조회수 업데이트 X)
     public Review getReviewWithoutView(HttpServletRequest request){
         int no = Integer.parseInt(request.getParameter("no"));
         Review review = null;

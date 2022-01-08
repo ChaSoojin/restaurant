@@ -14,39 +14,37 @@
 </head>
 <body>
 <c:set var="review_id" value="${review.getUser_id()}"/>
-<%--    <c:out value="user_id: ${user_id}"/><br>--%>
-<%--    <c:out value="review_id: ${review_id}"/><br>--%>
 
-<%--<c:if test="${sessionScope.log eq review_id}">--%>
-<%--    <input type="button" value="수정하기" onclick="location.href='reviewUpdatePage?no=<c:out value="${review.getNo()}"/>'">--%>
-<%--</c:if>--%>
+<c:if test="${sessionScope.log eq review_id}">
+    <input type="button" value="수정하기" onclick="location.href='reviewUpdatePage?no=<c:out value="${review.getNo()}"/>'">
+</c:if>
 <button type="button" id="btn2" onclick="history.back(-1);">뒤로가기</button>
-<%--<input type="button" value="뒤로가기" onclick="location.href='list'">--%>
 
 <div class="wrap">
     <table border="1" width="100%">
         <thead>
         <tr>
-            <th  colspan="3"  height="30px">제목: <strong> <c:out value="${review.getTitle()}"/></strong></th>
+            <th  colspan="4"  height="30px">제목: <strong> <c:out value="${review.getTitle()}"/></strong></th>
         </tr>
         <tr>
             <th>ID: <c:out value="${review.getUser_id()}"/></th>
             <th>작성날짜: <c:out value="${review.getModified_at()}"/></th>
             <th>좋아요: <c:out value="${review.getLikes()}"/>개</th>
+            <th>조회수: <c:out value="${review.getView()}"/></th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td  colspan="3" height="100px"><c:out value="${review.getContent()}"/></td>
+            <td  colspan="4" height="100px"><c:out value="${review.getContent()}"/></td>
         </tr>
         </tbody>
     </table>
-<%--    <label><input type="button" value="좋아요" onlick=""><c:out value="${review.getLikes()}개"/></label>--%>
+
     <br><br>
+
     <h3>사장님, 댓글을 달아주세요!</h3>
     <form method="post" action="ownerReviewUpdate">
         <input type="hidden" name="no" value="${review.getNo()}">
-<%--        <input type="hidden" name="restaurant_id" value="${review.getRestaurant_id()}">--%>
         <textarea name="comment" id="comment" rows="10" cols="60">${review.getComment()}</textarea><br><br>
         <input type="submit" value="수정하기">
     </form>

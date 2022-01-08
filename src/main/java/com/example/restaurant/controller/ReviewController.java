@@ -45,10 +45,9 @@ public class ReviewController {
 
     // Read
     public String getReview(int no, HttpServletRequest request){
-//        int no = Integer.parseInt(request.getParameter("no"));
         Review review = service.getReview(no);
         request.setAttribute("review", review);
-        return "review/reviewView"; // d이동
+        return "review/reviewView"; // 이동
     }
 
     public String getReviews(HttpServletRequest request){
@@ -61,7 +60,7 @@ public class ReviewController {
     public String reviewUpdatePage(HttpServletRequest request){
         int no = Integer.parseInt(request.getParameter("no"));
         getReview(no,request);  // get
-        return "review/reviewUpdate"; // d이동
+        return "review/reviewUpdate"; // 이동
     }
     public String reviewUpdate(@RequestParam Map<String,String> formdata, HttpServletRequest request){
 //        HttpSession session = request.getSession(); // session 의 아이디 가져오는것
@@ -133,13 +132,6 @@ public class ReviewController {
 
     //----- 사장 리뷰 확인용 -----
 
-    // 사장 / name 리뷰로 준거 안그러면 리스트로 넘어감
-    // 뭔지 모르겠음
-    public String ownerGetReviews(HttpServletRequest request){
-        List<Review> review = service.getReviews();
-        request.setAttribute("reivew", review);
-        return "review/reviewList";
-    }
     // 레스토랑 아이디로 리뷰내역 가져오기
     public String ownerReviewCheck(HttpServletRequest request){
         service.getMyReviewByRestaurantId(request);

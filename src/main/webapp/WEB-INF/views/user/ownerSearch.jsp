@@ -56,19 +56,12 @@
                     getList += "<td>"
                     getList += "<input type='hidden' value='" + data.documents[i].x + "'>";
                     getList += "<input type='hidden' value='" + data.documents[i].y + "'>";
-                    // getList += data.documents[i].x + " : " + data.documents[i].y;
                     getList += "<button onclick='saveData("+ num +")' style='padding:13px 13px;'>내 가게로 등록</button>"
-                    <%--getList += `<button onclick='saveData("rowData${i}")' style='padding:13px 13px;'>내 가게로 등록</button>`--%>
-
                     getList += "</td>"
                     getList += "</tr>"
-
-                    // 식당 데이터 save
-                    // if(){saveData(data.documents[i]);} //   중복 아닐 경우만 저장
                     num += 1;
                 }
                 getList += "</table>"
-
                 $("#restList").html("");
                 $("#restList").html(getList);
             })
@@ -83,8 +76,6 @@
     function saveData(num){
         var no = num * 6;
         var inputNum = num * 2 + 1 ;
-        // alert("num:"+num);
-        // alert("no:"+no);
         var str1 = document.getElementsByTagName('td')[no].childNodes[0].nodeValue; // id
         var str2 = document.getElementsByTagName('td')[no+1].childNodes[0].nodeValue; // name
         var str3 = document.getElementsByTagName('td')[no+2].childNodes[0].nodeValue; // phone
@@ -92,8 +83,7 @@
         var str5 = document.getElementsByTagName('td')[no+4].childNodes[0].nodeValue; // address
         var x = document.getElementsByTagName('input')[inputNum].value; // x
         var y = document.getElementsByTagName('input')[inputNum +1].value; // y
-        alert(x + ", "+ y);
-        alert(str1 + ", "+str2 + ", "+str3 + ", "+str4 + ", "+str5);
+        alert(str2 + " : 내 가게로 등록되었습니다.");
 
         const dataStr = {
             "restaurant_id": str1,
@@ -109,14 +99,6 @@
             contentType : "application/json",
             dataType : "json",
             data : JSON.stringify(dataStr),
-            success : function(data) {
-                // if(data.proc == "success") {
-                //     console.log("DB 저장완료")
-                // }
-            },
-            error : function(xhr, status, error) {
-                console.log("에러발생");
-            }
         });
         location.href="ownerPage";
     }

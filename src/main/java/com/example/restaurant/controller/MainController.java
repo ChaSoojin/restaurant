@@ -1,23 +1,17 @@
 package com.example.restaurant.controller;
 
-import com.example.restaurant.domain.Review;
-import com.example.restaurant.domain.UserRequestDto;
 import com.example.restaurant.service.ReviewService;
 import com.example.restaurant.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 @RequiredArgsConstructor
@@ -132,11 +126,6 @@ public class MainController {
 
     //----Review----
 
-//    @GetMapping("/")
-//    public String reviewIndex() {
-//        return "index";
-//    }
-
     @GetMapping("/list")
     public String reviewList(HttpServletRequest request) {
         return reviewController.getReviews(request);
@@ -178,18 +167,20 @@ public class MainController {
     // 좋아요 추가
     @GetMapping("/addLike")
     public String addLike(@RequestParam int no, HttpServletRequest request){
-        // 여긴 반대로 리뷰 정보 넘겨줘야 리뷰 페이지 불러오기 가능
-        reviewLikeController.addLike(request); // 더하고
-        reviewController.addLike(no);
+        // 좋아요 수정
+        reviewLikeController.addLike(request); // 테이블에서 더하고
+        reviewController.addLike(no); // 좋아요 갯수 +1
+        // 데이터 가져오기
         reviewLikeController.existData(request); // likeData 가져오고
         return reviewController.getReview(no, request); // 리뷰 가져오고
     }
     // 좋아요 삭제
     @GetMapping("/deleteLike")
     public String deleteLike(@RequestParam int no, HttpServletRequest request){
-        // 여긴 반대로 리뷰 정보 넘겨줘야 리뷰 페이지 불러오기 가능
-        reviewLikeController.deleteLike(request);// 빼고
-        reviewController.minusLike(no);
+        // 좋아요 수정
+        reviewLikeController.deleteLike(request);// 테이블에서 빼고
+        reviewController.minusLike(no); // 좋아요 갯수 -1
+        // 데이터 가져오기
         reviewLikeController.existData(request); // likeData 가져오고
         return reviewController.getReview(no, request); // reviewData 가져오고 이동
     }
@@ -198,53 +189,25 @@ public class MainController {
 
     // 사장페이지 들어가기
     @GetMapping("/ownerPage")
-    public String ownerPage(HttpServletRequest request){
-        return "user/ownerMyPage";
-    }
-    // 레스토랑 리스트 들어가기
-    @GetMapping("/ownerShopList")
     public String ownerShopList(HttpServletRequest request){
-//        String user_id = request.getParameter("user_id");
         return shopController.getMyDatas(request);
     }
 
-    // 레스토랑 검색하는 페이지(test)로 이동
+    // 레스토랑 검색하는 페이지로 이동
     @GetMapping("/searchPage")
-    public String ownerSearch(){ return "user/test"; }
-
-    //---- 새로 추가됨 ----
-//    // 내 레스토랑 추가히기 / 상세페이지
-//    @GetMapping("/settingRestaurant")
-//    public String settingRestaurant(@RequestParam String restaurant_id, HttpServletRequest request){
-//        System.out.println("식당아이디: " + restaurant_id);
-//        System.out.println("요청 : " + request);
-//
-//        return shopController.settingShopForm(restaurant_id, request);
-//    }
-//
-//    // (test에서) 내 가게로 등록하기
-//    @GetMapping("/setMyRestaurant")
-//    public String setMyRestaurant(HttpServletRequest request){
-////        String restaurant_id = request.getParameter("restaurant_id");
-////        String id = request.getParameter("user_id");
-////        System.out.println(restaurant_id + " : " + id);
-//
-//        return controller.setMyRestaurant(request);
-//    }
+    public String ownerSearch(HttpServletRequest request){
+        return "user/ownerSearch";
+    }
 
     // 각 레스토랑 별 예약내역 보러 가기
     @GetMapping("/ownerReserveCheck")
     public String ownerReserveCheck(HttpServletRequest request){
-//        String restaurant_id = request.getParameter("restaurant_id");
-//        System.out.println("restaurant_id:"+restaurant_id);
         return reserveController.ownerReserveCheck(request);
     }
 
     // 각 레스토랑 리뷰 리스트 보러 가기
     @GetMapping("/ownerReviewCheck")
     public String ownerReviewCheck(HttpServletRequest request){
-//        String restaurant_id = request.getParameter("restaurant_id");
-//        System.out.println("restaurant_id:"+restaurant_id);
         return reviewController.ownerReviewCheck(request);
     }
 
@@ -266,7 +229,7 @@ public class MainController {
         return shopController.deleteShopByUserId(request);
     }
 
-//    // 오너 페이지 안 내 가게 -> 지도 보기
+    // 오너 페이지 안 내 가게 -> 지도 보기
     @GetMapping("/ownerMapView")
     public String ownerMapView(HttpServletRequest request){
         String x = request.getParameter("x");
@@ -285,6 +248,5 @@ public class MainController {
     public String ownerReviewUpdate(HttpServletRequest request){
         return reviewController.ownerReviewUpdate(request);
     }
-
 
 }

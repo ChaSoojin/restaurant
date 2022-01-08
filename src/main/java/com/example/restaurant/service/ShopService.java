@@ -19,16 +19,16 @@ public class ShopService {
     public Boolean addShop(ShopRequestDto shopRequestDto, HttpServletRequest request){
 
         HttpSession session = request.getSession();
-
-        Shop shop = new Shop(shopRequestDto);
         String user_id = (String) session.getAttribute("log");
         System.out.println(user_id);
 
+        Shop shop = new Shop(shopRequestDto);
         shop.updateUserId(user_id);
 
         List<Shop> shops = getShops();
         boolean chk = true;
 
+        // Primary key 로 이미 걸렀지만 혹시 모르는 레스토랑 중복 체크
         for(Shop s : shops){
             if(s.getRestaurant_id().equals(shop.getRestaurant_id())){
                 chk = false;
@@ -71,19 +71,6 @@ public class ShopService {
         return target;
     }
 
-    // Id로 Restaurant 객체 가져오기
-    public Shop getShopById(String restaurant_id){
-        List<Shop> shopList = repo.findAll();
-        Shop result = null;
-
-        for(Shop r : shopList){
-            if(r.getRestaurant_id().equals(restaurant_id)){
-                result = r;
-            }
-        }
-        return result;
-    }
-
     // 레스토랑 삭제
     @Transactional
     public boolean deleteShop(HttpServletRequest request){
@@ -92,13 +79,4 @@ public class ShopService {
         return true;
     }
 
-    // 아예 지우고 싶은데 deletebyId는 int 값만 가능하다고
-//    //4. Delete
-//    @Transactional
-//    public int deleteShop(String restaurant_id){
-//        Shop shop = getShopById(restaurant_id);
-//        int id = Integer.parseInt(shop.getRestaurant_id());
-//        repo.deleteById(id);
-//        return id;
-//    }
 }
