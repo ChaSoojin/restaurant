@@ -28,7 +28,9 @@ public class RestaurantService {
         List<Restaurant> result = new ArrayList<>();
 
         for(Restaurant r : restaurantList){
+
             if(r.getRestaurant_id().equals(restaurant_id)){
+                System.out.println("ID: " + r.getRestaurant_id() + " rId: " + restaurant_id);
                 result.add(r);
             }
         }

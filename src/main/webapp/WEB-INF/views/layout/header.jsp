@@ -103,12 +103,17 @@
                                                 예약 바로가기
                                             </a>
                                         </li>
+                                        <li class="rd-dropdown-item">
+                                            <a class="rd-dropdown-link" href="/myLike">
+                                                내가 찜한 목록
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li class="rd-nav-item"><a class="rd-nav-link" href="#">맛집찜하기</a>
                                     <ul class="rd-menu rd-navbar-dropdown">
                                         <li class="rd-dropdown-item">
-                                            <a class="rd-dropdown-link" href="#">
+                                            <a class="rd-dropdown-link" href="/restaurantLike">
                                                 찜하러 바로가기
                                             </a>
                                         </li>

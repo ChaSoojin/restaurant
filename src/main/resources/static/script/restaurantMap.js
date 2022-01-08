@@ -1,3 +1,4 @@
+//맛집 상세페이지에서 조회할 맵 구성
 function checkBrowser(x,y, place_name){
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {

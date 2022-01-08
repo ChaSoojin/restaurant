@@ -89,7 +89,7 @@ public class ReviewController {
         return "review/reviewList";
     }
 
-    //My Review
+    //내 예약내역과 리뷰를 모두 마이페이지에서 조회
     public String getMyDatas(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String user_id = (String)session.getAttribute("log");

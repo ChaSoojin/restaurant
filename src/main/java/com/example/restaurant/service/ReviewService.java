@@ -56,6 +56,7 @@ public class ReviewService {
         return review.getNo();
     }
 
+    //Restaurant_id에 해당하는 리뷰 데이터 찾기
     public List<Review> getReviewByRestaurantId(HttpServletRequest request){
         String restaurant_id = request.getParameter("restaurant_id");
         List<Review> reviewList = repo.findAll();

@@ -1,3 +1,4 @@
+//예약폼 유효성 검사
 function checkInfo(form){
     const name = form.name.value;
     const phone = form.phone.value;

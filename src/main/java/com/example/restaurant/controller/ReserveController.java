@@ -25,6 +25,7 @@ public class ReserveController {
     private final RestaurantService restaurantService;
     private final ReviewController reviewController;
 
+    //예약 페이지에 출력될 관련 맛집 데이터 모두 조회
     public String reserveForm(String restaurant_id, HttpServletRequest request){
         List<Restaurant> restaurantList  = restaurantService.getRestaurant(restaurant_id);
         request.setAttribute("restaurantList", restaurantList);
@@ -32,6 +33,7 @@ public class ReserveController {
         return "/restaurant/restaurantReserve";
     }
 
+    //예약 처리
     public String reserveData(@RequestParam Map<String, String> formdata, HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         String user_id = (String) session.getAttribute("log");
@@ -61,6 +63,7 @@ public class ReserveController {
         return "/restaurant/myReserve";
     }
 
+    //예약취소
     public String deleteReserve(@RequestParam int no, HttpServletRequest request){
         HttpSession session = request.getSession();
         String user_id = (String) session.getAttribute("log");

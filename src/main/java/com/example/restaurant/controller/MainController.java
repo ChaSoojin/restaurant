@@ -1,11 +1,13 @@
 package com.example.restaurant.controller;
 
+import com.example.restaurant.domain.RestaurantLikeRequestDto;
 import com.example.restaurant.service.ReviewService;
 import com.example.restaurant.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +27,7 @@ public class MainController {
     private final UserService userService;
     private final ShopController shopController;
     private final ReviewLikeController reviewLikeController;
+    private final RestaurantLikeController restaurantLikeController;
 
     @GetMapping("/")
     public String main() {
@@ -85,19 +88,19 @@ public class MainController {
 
 
 
-
-
     //----Restaurant----
     @GetMapping("/restaurantSearch")
     public String resSearch(){
         return "restaurant/restaurantSearch";
     }
 
+    //맛집 상세 페이지
     @GetMapping("/detail")
     public String getRestaurant(@RequestParam String restaurant_id, HttpServletRequest request){
         return controller.resDetail(restaurant_id,request);
     }
 
+    //맛집예약 페이지에서 출력해줄 필요한 데이터 구성
     @GetMapping("/restaurantReserve")
     public String restaurantReserve(@RequestParam String restaurant_id, HttpServletRequest request){
         System.out.println("식당아이디: " + restaurant_id);
@@ -106,21 +109,45 @@ public class MainController {
         return reserveController.reserveForm(restaurant_id, request);
     }
 
+    //마이페이지
     @GetMapping("/userMyPage")
     public String mypage(HttpServletRequest request){
         return reviewController.getMyDatas(request);
     }
 
+    //예약취소
     @GetMapping("/reserveDelete")
     public String reserveDelete(@RequestParam int no, HttpServletRequest request){
         return reserveController.deleteReserve(no, request);
     }
 
+    //식당 예약하기
     @PostMapping("/reserve")
     public String reserveData(@RequestParam Map<String, String> formdata, HttpServletRequest request, HttpServletResponse response) throws IOException {
         return reserveController.reserveData(formdata, request, response);
     }
 
+    @GetMapping("/restaurantLike")
+    public String restaurantLike(){
+        return "restaurant/restaurantLikeList";
+    }
+
+    @PostMapping("/like")
+    public String addLike(@RequestBody RestaurantLikeRequestDto dto, HttpServletRequest request){
+        System.out.println("...");
+        return restaurantLikeController.addLike(dto, request);
+    }
+
+    @GetMapping("/myLike")
+    public String myRestaurantLike(HttpServletRequest request){
+        System.out.println("?....?");
+        return restaurantLikeController.getLike(request);
+    }
+
+    @GetMapping("/myLikeDelete")
+    public String likeDelete(@RequestParam String restaurant_id, HttpServletRequest request){
+        return restaurantLikeController.cancelLike(restaurant_id, request);
+    }
 
 
 

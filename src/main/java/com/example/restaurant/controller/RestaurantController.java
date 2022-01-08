@@ -18,6 +18,7 @@ public class RestaurantController {
     private final RestaurantService service;
     private final ReviewService reviewService;
 
+    //맛집검색 <- map.js
     @PostMapping("/restaurantSearch")
     public Restaurant addRestaurant(@RequestParam Map<String, String> data){
 
@@ -33,9 +34,14 @@ public class RestaurantController {
         return service.addRestaurant(newDto);
     }
 
+    //맛집 상세보기
     public String resDetail(String restaurant_id, HttpServletRequest request){
         System.out.println("ID: " + restaurant_id);
+
+        //1. Restaurant_id에 해당하는 맛집 데이터
         List<Restaurant> restaurantList  = service.getRestaurant(restaurant_id);
+
+        //2. Restaurant_id에 해당하는 리뷰
         List<Review> reviewList = reviewService.getReviewByRestaurantId(request);
 
         request.setAttribute("restaurant", restaurantList);

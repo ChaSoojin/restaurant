@@ -32,10 +32,13 @@ public class ReserveService {
         return result;
     }
 
+    //예약취소
     @Transactional
     public void deleteReserve(int no){
         repo.deleteById(no);
     }
+
+
 
     // ----- 사장페이지 관련 ------
 
@@ -52,10 +55,4 @@ public class ReserveService {
         }
         return result;
     }
-
-//    @Transactional
-//    public boolean deleteReserve(int no){
-//        repo.deleteById(no);
-//        return true;
-//    }
 }
