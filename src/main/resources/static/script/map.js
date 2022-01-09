@@ -84,13 +84,13 @@ function restaurantSearch(myY, myX){
 
             for(var i=0; i<data.documents.length; i++) {
                 getList += "<tr>"
-                getList += "<td> <a href='/detail?restaurant_id=" + data.documents[i].id + "' style='text-decoration: none'>" + data.documents[i].place_name + "</a></td>"
+                getList += "<td> <a href='/detail?restaurant_id=" + data.documents[i].id + "' style='color:blue; text-decoration: none;'>" + data.documents[i].place_name + "</a></td>"
                 getList += "<td>" + data.documents[i].phone + "</td>"
                 getList += "<td>" + data.documents[i].category_name + "</td>"
                 getList += "<td>" + data.documents[i].address_name + "</td>"
                 getList += "<td>"
-                getList += "<a href='/restaurantReserve?restaurant_id=" + data.documents[i].id + "'><button style='padding:13px 13px;'>예약하기</button></a>"
-                getList += "<a href='/writePage?restaurant_id=" + data.documents[i].id + "'><button style='padding:13px 13px;'>리뷰작성</button></a>"
+                getList += "<a href='/restaurantReserve?restaurant_id=" + data.documents[i].id + "'><button style='padding:13px 13px; cursor: pointer;'>예약하기</button></a>"
+                getList += "<a href='/writePage?restaurant_id=" + data.documents[i].id + "'><button style='padding:13px 13px; cursor: pointer;'>리뷰작성</button></a>"
                 getList += "</td>"
                 getList += "</tr>"
 

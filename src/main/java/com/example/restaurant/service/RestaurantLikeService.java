@@ -15,7 +15,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RestaurantLikeService {
     private final RestaurantLikeRepository repo;
-
+    
+    //내가 찜한 레스토랑 목록 조회 
     public List<RestaurantLike> getLike(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String user_id = (String) session.getAttribute("log");
@@ -32,6 +33,7 @@ public class RestaurantLikeService {
         return result;
     }
 
+    //식당 찜하기
     public boolean addLike(RestaurantLikeRequestDto dto, HttpServletRequest request) {
         HttpSession session = request.getSession();
         String user_id = (String) session.getAttribute("log");
@@ -43,15 +45,18 @@ public class RestaurantLikeService {
         return true;
     }
 
+    //식당 찜하기 취소
     @Transactional
     public void cancelLike(String restaurant_id, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String user_id = (String) session.getAttribute("log");
 
         List<RestaurantLike> likes = getLike(request);
 
         System.out.println("Like 사이즈: " + likes.size());
 
         for (RestaurantLike like : likes) {
-            if (like.getRestaurant_id().equals(restaurant_id)) {
+            if (like.getRestaurant_id().equals(restaurant_id) && like.getUser_id().equals(user_id)) {
                 System.out.println("true");
 
                 repo.deleteById(restaurant_id);

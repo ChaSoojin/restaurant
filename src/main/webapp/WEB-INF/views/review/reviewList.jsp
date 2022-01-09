@@ -31,8 +31,8 @@
                 </tr>
                 </thead>
                 <c:forEach items="${list }" var="review">
-                    <tr  method="post" onclick="location.href='reviewView?no=<c:out value="${review.getNo()}"/>'">
-                        <td ><c:out value="${review.getNo()}"/></td>
+                    <tr  method="post" style="cursor: pointer;" onclick="location.href='reviewView?no=<c:out value="${review.getNo()}"/>'">
+                        <td><c:out value="${review.getNo()}"/></td>
                         <td><c:out value="${review.getTitle()}"/></td>
                         <td><c:out value="${review.getUser_id()}"/></td>
                         <td><c:out value="${review.getLikes()}"/></td>

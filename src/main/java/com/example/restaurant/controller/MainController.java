@@ -78,8 +78,6 @@ public class MainController {
     }
 
 
-
-
     @PostMapping("/deleteUser")
     public String userDelete(@RequestParam Map<String, String> data, HttpServletRequest request){
 
@@ -90,7 +88,13 @@ public class MainController {
 
     //----Restaurant----
     @GetMapping("/restaurantSearch")
-    public String resSearch(){
+    public String resSearch(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String user_id = (String)session.getAttribute("log");
+
+        if(user_id == null){
+            return "user/login";
+        }
         return "restaurant/restaurantSearch";
     }
 
@@ -128,22 +132,37 @@ public class MainController {
     }
 
     @GetMapping("/restaurantLike")
-    public String restaurantLike(){
+    public String restaurantLike(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String user_id = (String)session.getAttribute("log");
+
+        if(user_id == null){
+            return "user/login";
+        }
+
         return "restaurant/restaurantLikeList";
     }
 
+    //식당 찜하기
     @PostMapping("/like")
     public String addLike(@RequestBody RestaurantLikeRequestDto dto, HttpServletRequest request){
-        System.out.println("...");
         return restaurantLikeController.addLike(dto, request);
     }
 
+    //내가 찜한 식당 목록
     @GetMapping("/myLike")
     public String myRestaurantLike(HttpServletRequest request){
-        System.out.println("?....?");
+        HttpSession session = request.getSession();
+        String user_id = (String)session.getAttribute("log");
+
+        if(user_id == null){
+            return "user/login";
+        }
+
         return restaurantLikeController.getLike(request);
     }
 
+    //식당 찜하기 취소
     @GetMapping("/myLikeDelete")
     public String likeDelete(@RequestParam String restaurant_id, HttpServletRequest request){
         return restaurantLikeController.cancelLike(restaurant_id, request);

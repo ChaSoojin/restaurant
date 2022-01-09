@@ -20,6 +20,7 @@ import java.util.List;
 public class RestaurantLikeController {
     private final RestaurantLikeService service;
 
+    //내가 찜한 레스토랑 목록 조회
     public String getLike(HttpServletRequest request){
         List<RestaurantLike> result = service.getLike(request);
         System.out.println(result.size());
@@ -29,16 +30,18 @@ public class RestaurantLikeController {
         return "restaurant/myRestaurantLike";
     }
 
+    //식당 찜하기
     public String addLike(@RequestBody RestaurantLikeRequestDto dto, HttpServletRequest request){
         if(service.addLike(dto, request)){
             System.out.println("성공");
         }
         else{
-            System.out.println("실퍂");
+            System.out.println("실패");
         }
         return "";
     }
 
+    //식당 찜하기 취소
     public String cancelLike(String restaurant_id, HttpServletRequest request){
         HttpSession session = request.getSession();
         String user_id = (String) session.getAttribute("log");
