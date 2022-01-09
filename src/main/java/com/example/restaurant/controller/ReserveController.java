@@ -86,12 +86,12 @@ public class ReserveController {
     // 예약내역 지우고 다시 예약내역 보러가기
     public String deleteReserve(HttpServletRequest request){
         int no = Integer.parseInt(request.getParameter("no"));
-        String restaurant_id = request.getParameter("restaurant_id"); // "user/ownerReserve"로 가기위해서!
-
         reserveService.deleteReserve(no);
 
+        // "user/ownerReserve"로 돌아가기위해서!
+        String restaurant_id = request.getParameter("restaurant_id");
         List<Reserve> reserve = reserveService.getMyReserveByRestaurantId(restaurant_id);
-        request.setAttribute("reserve", reserve);
+        request.setAttribute("reserve", reserve); // reserve 정보 저장
         return "user/ownerReserve";
     }
 }

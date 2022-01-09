@@ -82,7 +82,7 @@
 
 
 <body>
-<button type="button" id="btn2" onclick="history.back(-1);">뒤로가기</button>
+<%--<button type="button" id="btn2" onclick="history.back(-1);">뒤로가기</button>--%>
 <c:set var="size" value="${reserve.size()}"/>
 <c:choose>
     <c:when test="${size eq 0}">
@@ -91,35 +91,37 @@
         <h3>예약내역이 존재하지 않습니다.</h3>
     </c:when>
     <c:otherwise>
-        <h1><c:out value="${reserve.get(0).getRestaurant_name()}"/> 예약내역 확인</h1>
-
-        <table border="1" width="90%">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>name</th>
-                <th>phone</th>
-                <th>time</th>
-                <th>family size</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="reserve" items="${reserve}">
+        <h1 style="padding: 20px"><c:out value="${reserve.get(0).getRestaurant_name()}"/> 예약내역 확인</h1>
+        <br><br>
+        <div style="padding: 20px">
+            <table border="1" width="70%" style="padding: 20px">
+                <thead>
                 <tr>
-                    <td><c:out value="${reserve.getUser_id()}"/> </td>
-                    <td><c:out value="${reserve.getUser_name()}"/> </td>
-                    <td><c:out value="${reserve.getPhone()}"/> </td>
-                    <td><c:out value="${reserve.getReserve_time()}"/> </td>
-                    <td><c:out value="${reserve.getCnt()}명"/> </td>
-                    <td><input type="button" value="완료" onclick="location.href='deleteReserve?restaurant_id=${reserve.getRestaurant_id()}&no=${reserve.getNo()}'"></td>
+                    <th>ID</th>
+                    <th>name</th>
+                    <th>phone</th>
+                    <th>time</th>
+                    <th>family size</th>
+                    <th></th>
                 </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <c:forEach var="reserve" items="${reserve}">
+                    <tr>
+                        <td><c:out value="${reserve.getUser_id()}"/> </td>
+                        <td><c:out value="${reserve.getUser_name()}"/> </td>
+                        <td><c:out value="${reserve.getPhone()}"/> </td>
+                        <td><c:out value="${reserve.getReserve_time()}"/> </td>
+                        <td><c:out value="${reserve.getCnt()}명"/> </td>
+                        <td><input type="button" value="완료" onclick="location.href='deleteReserve?restaurant_id=${reserve.getRestaurant_id()}&no=${reserve.getNo()}'"></td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
     </c:otherwise>
 </c:choose>
-
+<br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
 </html>
 <c:import url="/WEB-INF/views/layout/footer.jsp"/>

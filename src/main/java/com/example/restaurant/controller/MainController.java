@@ -33,11 +33,6 @@ public class MainController {
     public String main() {
         return "main";
     }
-
-    @GetMapping("/index")
-    public String index(){
-        return "index";
-    }
     @GetMapping("/join")
     public String join(){
         return "user/join";

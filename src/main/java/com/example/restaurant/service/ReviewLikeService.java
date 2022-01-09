@@ -53,6 +53,7 @@ public class ReviewLikeService {
         return reviewLike;
     }
 
+    // 테이블에 넣기
     public boolean addData(HttpServletRequest request){
         HttpSession session = request.getSession();
         String user_id = (String) session.getAttribute("log");
@@ -65,9 +66,9 @@ public class ReviewLikeService {
         return true;
     }
 
+     // 테이블에서 삭제
     public boolean deleteData(HttpServletRequest request){
         int review_no = Integer.parseInt(request.getParameter("no"));
-
         ReviewLike reviewLike = getData(review_no, request);
         repo.deleteById(reviewLike.getNo());
 

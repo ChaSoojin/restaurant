@@ -10,7 +10,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
 
+
+    <!-- favicon image -->
     <link rel="icon" href="images/foodicon.ico" type="image/x-icon">
+
+    <link rel="shortcut icon" href="images/foodicon.ico">
+    <meta property="og:title" content="우동맛|우리 동네 맛집">
+    <meta property="og:description" content="맛집 전문 검색페이지 '우동맛' 입니다.">
+    <meta property="og:image" content="mainImage.png">
+    <!-- ... -->
 
     <!-- Stylesheets-->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Work+Sans:300,700,800%7COswald:300,400,500">
