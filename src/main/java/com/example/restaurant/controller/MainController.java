@@ -141,6 +141,7 @@ public class MainController {
     //식당 찜하기
     @PostMapping("/like")
     public String addLike(@RequestBody RestaurantLikeRequestDto dto, HttpServletRequest request){
+        controller.addRestaurant(dto);
         return restaurantLikeController.addLike(dto, request);
     }
 

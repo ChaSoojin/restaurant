@@ -1,6 +1,7 @@
 package com.example.restaurant.controller;
 
 import com.example.restaurant.domain.Restaurant;
+import com.example.restaurant.domain.RestaurantLikeRequestDto;
 import com.example.restaurant.domain.RestaurantRequestDto;
 import com.example.restaurant.domain.Review;
 import com.example.restaurant.service.RestaurantService;
@@ -28,6 +29,20 @@ public class RestaurantController {
         String x = (String) data.get("x");
         String y = (String) data.get("y");
         String address = (String) data.get("address");
+        String user_id = "";
+
+        RestaurantRequestDto newDto = new RestaurantRequestDto(restaurant_id, user_id, restaurant_name, phone, address, x, y);
+        return service.addRestaurant(newDto);
+    }
+
+    public Restaurant addRestaurant(@RequestBody RestaurantLikeRequestDto dto){
+
+        String restaurant_id = dto.getRestaurant_id();
+        String restaurant_name = dto.getRestaurant_name();
+        String phone = dto.getPhone();
+        String x = dto.getX();
+        String y = dto.getY();
+        String address = dto.getAddress();
         String user_id = "";
 
         RestaurantRequestDto newDto = new RestaurantRequestDto(restaurant_id, user_id, restaurant_name, phone, address, x, y);
