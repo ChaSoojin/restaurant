@@ -49,17 +49,17 @@
                                 <table>
                                     <tr>
                                         <td>비밀번호</td>
-                                        <td><input type="password" name="pw" size="20" id="pw" value="${loginUser.getPw()}">*</td>
+                                        <td><input type="password" name="pw" size="20" id="pw" value="${loginUser.getPw()}"></td>
                                     </tr>
 
                                     <tr>
                                         <td>폰번호</td>
-                                        <td><input type="text" name="phone" size="20" id="phone" value="${loginUser.getPhone()}">*</td>
+                                        <td><input type="text" name="phone" size="20" id="phone" value="${loginUser.getPhone()}"></td>
                                     </tr>
 
                                     <tr>
                                         <td>email</td>
-                                        <td><input type="text" name="email" size="20" id="email" value="${loginUser.getEmail()}">*</td>
+                                        <td><input type="text" name="email" size="20" id="email" value="${loginUser.getEmail()}"></td>
                                     </tr>
 
                                 </table>

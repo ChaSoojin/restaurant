@@ -70,11 +70,12 @@
                                 <c:otherwise>
                                     <div class="container">
                                         <c:forEach var="list" items="${list}">
-                                            <div class="item">
+
                                                     <%--  레스토랑ID: <c:out value="${list.getRestaurant_id()}"/><br><br>--%>
                                                     <%--  레스토랑명: <c:out value="${list.getRestaurant_name()}"/><br><br>--%>
 
-                                                <table border="1" width="100%">
+                                                <table border="1" width="100%" >
+                                                    <div class="item" >
                                                     <tr>
                                                         <td>ID: <strong>${list.getRestaurant_id()}</strong></td>
                                                     </tr>
@@ -95,8 +96,9 @@
                                                             <input type="button" onclick="location.href='deleteRestaurantByUserId?restaurant_id=${list.getRestaurant_id()}&user_id=${user_id}'" value="가게 삭제">
                                                         </td>
                                                     </tr>
-                                                </table><br>
                                             </div>
+                                                </table><br>
+
                                         </c:forEach>
                                     </div>
 

@@ -18,6 +18,8 @@
             overflow: hidden;
             width: 1200px;
             height: 999px;
+            /*width: 100vw;*/
+            /*height: 100vh;*/
             margin: 100px auto;
             color: black;
             font-size: 20px;
@@ -28,6 +30,10 @@
         .box {
             width: 333px;
             height: 333px;
+
+
+            /*width: 30vw;*/
+            /*height: 30vh;*/
             float: left;
             margin-right: 30px;
             margin-bottom: 30px;

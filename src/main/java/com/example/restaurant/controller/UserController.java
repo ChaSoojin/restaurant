@@ -99,10 +99,8 @@ public class UserController {
     }
 
     public void searchUser(String id, HttpServletRequest request){
-//        int no = Integer.parseInt(request.getParameter("no"));
         User user = service.getUser(id);
         request.setAttribute("loginUser", user);
-//        return "review/reviewView"; // d이동
     }
 
 

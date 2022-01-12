@@ -18,11 +18,12 @@
 <body onload="checkBrowser(${restaurant.get(0).getX()}, ${restaurant.get(0).getY()}, '${restaurant.get(0).getRestaurant_name()}' )">
 
 <div class="container" style="margin-top : 30px;">
-    <div class="row container-board-padding" style="display: flex; justify-content: center;">
+    <div class="row container-board-padding" style="display: flex; justify-content: center; padding-top: 60px;">
         <div class="col-sm-12 col-md-12 col-lg-12  col-xl-9 table-responsive wow fadeIn row ">
 
-            <table border="solid 1px"
-                   style="border-collapse: collapse; width: 600px; height: 200px; margin:auto; text-align:center;">
+            <table class="table table-hover table-job-positions text-center">
+                <tbody>
+
                 <tr>
                     <td>NO</td>
                     <td>${restaurant.get(0).getNo()}</td>
@@ -45,12 +46,14 @@
                     <td>주소</td>
                     <td colspan="6">${restaurant.get(0).getAddress()}</td>
                 </tr>
+                <tbody>
             </table>
             <br><br>
-            <div id="map" style="width:1000px;height:500px; display:inline-block;"></div>
+            <div id="map" style="width:1000px;height:500px; display:inline-block; "></div>
             <br><br>
 
             <table class="table table-hover table-job-positions text-center">
+                <tbody>
                 <thead class="thead_top">
                 <tr>
                     <th>No</th>
@@ -71,6 +74,7 @@
                         <td><c:out value="${review.getModified_at()}"/></td>
                     </tr>
                 </c:forEach>
+                <tbody>
             </table>
             <br><br>
         </div>

@@ -3,7 +3,7 @@
 <c:import url="/WEB-INF/views/layout/header.jsp"/>
 
 <section class="breadcrumbs-custom bg-image"
-         style="background-image: url(https://media.istockphoto.com/vectors/kawaii-food-vector-emoticon-japanese-sushi-character-and-emoji-roll-vector-id969402478);">
+         style="background-image: url(https://previews.123rf.com/images/meysye/meysye1704/meysye170400003/75333093-set-of-cute-food-doodle.jpg?fj=1);">
     <div class="breadcrumbs-custom-inner">
         <div class="breadcrumbs-custom-container container">
             <div class="breadcrumbs-custom-main">
@@ -20,18 +20,21 @@
 <%--onload="checkBrowser()"--%>
 
 <body>
-<div style="text-align:center; margin: 50px 0px;">
+<%--<div style="text-align:center; margin: 50px 0px; width:100vw;height:100vh;">--%>
+    <div style="text-align:center; margin: 50px 0px; ">
 
-    <div id="map" style="width:1000px;height:500px; display:inline-block;"></div>
+<%--    <div id="map" style="width:70%; height:70%; display:inline-block;"></div>--%>
+    <div id="map" style="width:1000px; height:500px; display:inline-block;"></div>
     <br><br><br>
 
-    <div style="display: inline-block; border-bottom: 1px solid black; padding-bottom: 30px; margin-bottom : 20px;">
+    <div style="display: inline-block; border-bottom: 1px solid black; padding-bottom: 30px; margin-bottom : 20px;  ">
         <input type="text" id="restName" name="restName" style="width:400px; display: inline" onkeyup="enterkey();"/>
         <button type="submit" id="search" name="search" style="margin:0px 30px;" onclick="search()">검색</button>
     </div>
 
-    <div id="restList">
-        <div style="height:400px; display:flex; justify-content: center; align-items: center; font-size: 2em;">
+    <div id="restList" >
+        <div style="height:400px; display:block; justify-content: center; align-items: center; font-size: 2em;">
+<%--            <div style=" display:block; justify-content: center; align-items: center; font-size: 2em; ">--%>
             <div>맛집을 검색해 주세요!</div>
         </div>
     </div>

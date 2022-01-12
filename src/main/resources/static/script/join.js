@@ -83,10 +83,9 @@ function checkId(inputValue) {
     if (!valTest.test(inputValue.id.value)) {
         alert("아이디는 (영문or대소문자or숫자)4~12자리로 입력")
 
+        inputValue.id.value = "";
+        inputValue.id.focus();
 
-        const form = document.info;
-        form.id.value = "";
-        form.id.focus();
         return false;
     }
     return true;
@@ -105,10 +104,8 @@ function checkPw(form) {
 
     if (!valTest.test(form.pw1.value)) {
         alert("비번은 영문(대문자 OR 소문자 OR 숫자)4~12자리로 입력");
-
-        const form = document.info;
-        form.pw1.value = "";      //input태그 name=id 인곳 공백만듬
-        form.pw1.focus();        //포커스잡아줌
+        form.pw1.value = "";                                             //input태그 name=pw1 인곳 공백만듬
+        form.pw1.focus();                                                //포커스잡아줌
         return false;
     }
 
@@ -131,7 +128,6 @@ function checkPw(form) {
         form.pw2.focus();
         return false;
     }
-
     return true;
 }
 
@@ -140,7 +136,7 @@ function checkName(form) {
     // alert("여들어오냐")
     if (!checknull(form.name.value)) {
         alert("이름이 공백입니다")
-        const form = document.info;
+        // const form = document.info;
         form.name.value = "";
         form.name.focus();
         return false;
@@ -150,7 +146,7 @@ function checkName(form) {
     if (!valTest.test(form.name.value)) {
         alert("이름은 한글or영문or대소문자로 입력");
 
-        const form = document.info;
+        // const form = document.info;
         form.name.value = "";      //input태그 name이 name 인곳 공백만듬
         form.name.focus();        //포커스잡아줌
         return false;

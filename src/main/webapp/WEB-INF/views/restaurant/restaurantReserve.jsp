@@ -24,13 +24,13 @@
 </head>
 <body>
 <div class="container" style="margin-top : 30px;">
-    <div class="row container-board-padding" style="display: flex; justify-content: center;">
+    <div class="row container-board-padding" style="display: flex; justify-content: center; padding-top: 70px;">
        <%-- <div class="col-sm-12 col-md-12 col-lg-12  col-xl-9 table-responsive wow fadeIn row ">--%>
 
             <form method="post" action="/reserve">
                 <!-- reserve_seq no id cnt days r_day use_navi use_seat -->
-                <table border="solid 1px"
-                       style="border-collapse: collapse; width: 800px; height: 400px; margin:auto; text-align:center;">
+                <table class="table table-hover table-job-positions text-center">
+                    <tbody>
                     <tr>
                         <td>NO</td>
                         <td>${restaurantList.get(0).getNo()}</td>
@@ -76,6 +76,7 @@
                             <input type="text" placeholder="예약인원 입력" name="cnt" id="cnt"></td>
                         </td>
                     </tr>
+                    <tbody>
                 </table>
                 <input type="hidden" name="restaurant_id" value="${restaurantList.get(0).getRestaurant_id()}">
                 <input type="hidden" name="restaurant_name" value="${restaurantList.get(0).getRestaurant_name()}">
