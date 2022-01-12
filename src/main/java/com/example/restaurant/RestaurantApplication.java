@@ -10,9 +10,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @SpringBootApplication
 public class RestaurantApplication extends SpringBootServletInitializer {
 
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder){
-        return builder.sources(RestaurantApplication.class);
-    }
+//    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder){
+//        return builder.sources(RestaurantApplication.class);
+//    }
 
     public static void main(String[] args) {
         SpringApplication.run(RestaurantApplication.class, args);

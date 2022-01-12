@@ -37,10 +37,12 @@
                                                                     href="#tabs-1-2" data-toggle="tab">회원 탈퇴하기</a></li>
 
                         <li class="nav-item" role="presentation"><a class="nav-link"
-                                                                    href="#tabs-1-3" data-toggle="tab">예약 확인</a></li>
+                                                                    href="#tabs-1-3" data-toggle="tab">예약 내역 확인</a></li>
 
                         <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-4" data-toggle="tab">
-                            내가 쓴 리뷰 </a></li>
+                            내가 쓴 리뷰</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-5" data-toggle="tab">
+                            내가 찜한 목록</a></li>
                     </ul>
                     <br> <br>
                     <div class="tab-content">
@@ -141,6 +143,53 @@
                                 </tbody>
                             </table>
                         </div>
+
+                        <!-- 내가 찜한 목록 -->
+                        <div class="tab-pane fade" id="tabs-1-5">
+                            <table class="table table-hover table-job-positions text-center">
+                                <tbody>
+
+                                <c:forEach var="item" items="${mylike}">
+                                    <tr>
+                                        <td>식당ID</td>
+                                        <td>${item.getRestaurant_id() }</td>
+                                        <td>식당명</td>
+                                        <td>
+                                                ${item.getRestaurant_name() }
+                                        <td>
+                                        <td>찜취소</td>
+                                        <td>예약하기</td>
+                                        <td>리뷰작성</td>
+                                    </tr>
+                                    <tr>
+                                        <td>식당번호</td>
+                                        <td colspan="3">${item.getPhone()}</td>
+                                        <td colspan="2" rowspan="2" style="text-align: center">
+                                            <img src="<c:url value='like/like.png'/>"
+                                                 onclick="location.href='/myLikeDelete?restaurant_id=${item.getRestaurant_id() }'"
+                                                 style="width:50px; height:50px; cursor:pointer; margin-left:45px;">
+                                        </td>
+                                        <td rowspan="2">
+                                            <button onclick="location.href='/restaurantReserve?restaurant_id=${item.getRestaurant_id() }'"
+                                                    style='padding:13px 13px; cursor: pointer;'>예약하기
+                                            </button>
+                                        </td>
+                                        <td rowspan="2">
+                                            <button onclick="location.href='/writePage?restaurant_id=${item.getRestaurant_id() }'"
+                                                    style='padding:13px 13px; cursor: pointer;'>리뷰작성
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>식당주소</td>
+                                        <td colspan="3">${item.getAddress()}</td>
+                                    </tr>
+                                </c:forEach>
+
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
                 </div>
             </div>

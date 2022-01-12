@@ -18,28 +18,30 @@
 <body>
 <div class="container" style="margin-top : 30px;">
     <div class="row container-board-padding" style="display: flex; justify-content: center;">
-        <div class="col-sm-12 col-md-12 col-lg-12  col-xl-9 table-responsive wow fadeIn row ">
+        <%--<div class="col-sm-12 col-md-12 col-lg-12  col-xl-9 table-responsive wow fadeIn row ">--%>
             <h4 style="text-align: center;">내가 찜한 목록</h4>
-            <table border="solid 1px" style="border-collapse: collapse; margin : 40px 200px; text-align: center">
+            <table class="table table-hover table-job-positions text-center">
+                <tbody>
+
                 <c:forEach var="item" items="${likelist}">
                     <tr>
                         <td>식당ID</td>
                         <td>${item.getRestaurant_id() }</td>
                         <td>식당명</td>
                         <td>
-                            ${item.getRestaurant_name() }
+                                ${item.getRestaurant_name() }
                         <td>
-                        <td>취소</td>
+                        <td>찜취소</td>
                         <td>예약하기</td>
                         <td>리뷰작성</td>
                     </tr>
                     <tr>
                         <td>식당번호</td>
                         <td colspan="3">${item.getPhone()}</td>
-                        <td colspan="2" rowspan="2">
+                        <td colspan="2" rowspan="2" style="text-align: center">
                             <img src="<c:url value='like/like.png'/>"
                                  onclick="location.href='/myLikeDelete?restaurant_id=${item.getRestaurant_id() }'"
-                                 style="width:30px; height:30px; cursor:pointer; text-align:center;">
+                                 style="width:50px; height:50px; cursor:pointer; margin-left:80px;">
                         </td>
                         <td rowspan="2">
                             <button onclick="location.href='/restaurantReserve?restaurant_id=${item.getRestaurant_id() }'"
@@ -57,8 +59,10 @@
                         <td colspan="3">${item.getAddress()}</td>
                     </tr>
                 </c:forEach>
+
+                </tbody>
             </table>
-        </div>
+       <%-- </div>--%>
     </div>
 </div>
 </body>

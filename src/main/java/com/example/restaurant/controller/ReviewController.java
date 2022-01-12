@@ -1,9 +1,11 @@
 package com.example.restaurant.controller;
 
 import com.example.restaurant.domain.Reserve;
+import com.example.restaurant.domain.RestaurantLike;
 import com.example.restaurant.domain.Review;
 import com.example.restaurant.domain.ReviewRequestDto;
 import com.example.restaurant.service.ReserveService;
+import com.example.restaurant.service.RestaurantLikeService;
 import com.example.restaurant.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,7 @@ public class ReviewController {
     private final ReserveService reserveService;
     private final ReviewService service;
     private final UserController userController;
+    private final RestaurantLikeService restaurantLikeService;
 
     // create
     public String addReview(@RequestParam Map<String,String> formdata, HttpServletRequest request){
@@ -100,6 +103,9 @@ public class ReviewController {
         List<Reserve> reserveList = reserveService.getMyReserve(user_id);
         List<Reserve> result2 = new ArrayList<>();
 
+        List<RestaurantLike> likeList = restaurantLikeService.getLike(request);
+        List<RestaurantLike> result3 = new ArrayList<>();
+
         for(Review r : reviewList){
             if(r.getUser_id().equals(user_id)){
                 result.add(r);
@@ -112,11 +118,19 @@ public class ReviewController {
             System.out.println("ID: " + r2.getUser_id() + " --- 식당: " + r2.getRestaurant_name());
         }
 
+        for(RestaurantLike r3 : likeList){
+            result3.add(r3);
+            System.out.println("ID: " + r3.getUser_id() + " --- 식당: " + r3.getRestaurant_name());
+        }
+
         System.out.println("리스트: " + result.size());
         System.out.println("리스트2: " + result2.size());
+        System.out.println("리스트3: " + result3.size());
 
         request.setAttribute("myreview", result);
         request.setAttribute("myreserve", result2);
+        request.setAttribute("mylike", result3);
+
         userController.getUser(request);
 
         return "user/userMyPage";
