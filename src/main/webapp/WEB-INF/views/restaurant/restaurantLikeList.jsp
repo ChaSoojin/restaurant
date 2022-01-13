@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4ab81001911aa4ddc5b7d6148c5a348b"></script>
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
-
 <c:import url="/WEB-INF/views/layout/header.jsp"/>
 
 <!doctype html>
@@ -13,51 +9,6 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <style>
-        #con {
-            overflow: hidden;
-            width: 1200px;
-            height: 999px;
-            /*width: 100vw;*/
-            /*height: 100vh;*/
-            margin: 100px auto;
-            color: black;
-            font-size: 20px;
-            text-align: center;
-            text-transform: uppercase;
-        }
-
-        .box {
-            width: 333px;
-            height: 333px;
-
-
-            /*width: 30vw;*/
-            /*height: 30vh;*/
-            float: left;
-            margin-right: 30px;
-            margin-bottom: 30px;
-        }
-
-        .box:after {
-            display:block;
-            content:'';
-            clear:both;
-        }
-
-        .content2 {
-            margin-right: 0;
-        }
-
-        .content5 {
-            margin-right: 0;
-        }
-
-        .content8 {
-            margin-right: 0;
-        }
-
-    </style>
     <title>Restaurant Like</title>
 </head>
 
@@ -73,15 +24,23 @@
     </div>
 </section>
 
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4ab81001911aa4ddc5b7d6148c5a348b"></script>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+
 <body>
 <div style="text-align:center; margin: 50px 0px;">
 
     <div id="searchDiv">
         <input type="text" id="restName" name="restName" style="width:400px; display: inline" onkeyup="enterkey();"/>
-        <button type="submit" id="search" name="search" style="margin:0px 30px;" onclick="restaurantSearch( '<%=(String)session.getAttribute("log")%>')">검색</button>
+        <button type="submit" id="search" name="search" style="margin:0px 30px;" onclick="searchRes(`${likelist}`)">검색</button>
     </div>
 
-    <div id="con">
+    <br><br>
+    <div id="restList" >
+        <div style="height:400px; display:block; justify-content: center; align-items: center; font-size: 2em;">
+            <div>맛집을 검색해 주세요!</div>
+        </div>
     </div>
 </div>
 

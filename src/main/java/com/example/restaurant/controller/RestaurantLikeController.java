@@ -31,20 +31,24 @@ public class RestaurantLikeController {
     }
 
     //찜한 목록인지 체크
-    @PostMapping("/checklikes")
-    public Map<String, String>  checkMyLikes(@RequestBody RestaurantLikeRequestDto dto, HttpServletRequest request){
-        Map<String, String> map = new HashMap<>();
+    public List<RestaurantLike> checkMyLikes(HttpServletRequest request){
+        List<RestaurantLike> result = service.getLike(request);
+        System.out.println(result.size());
 
-        if(service.checkLike(dto, request)){
-            System.out.println("찜한 목록 중 존재..");
-            map.put("proc", "success");
-        }
-        else{
-            System.out.println("찜 목록에 없음!");
-            map.put("proc", "fail");
-        }
+        return result;
 
-        return map;
+//        if(service.checkLike(dto, request)){
+//            System.out.println("찜한 목록 중 존재..");
+//            request.setAttribute("like", "true");
+//            return true;
+//        }
+//        else{
+//            System.out.println("찜 목록에 없음!");
+//            request.setAttribute("like", "false");
+//        }
+//
+//        return false;
+
     }
 
 

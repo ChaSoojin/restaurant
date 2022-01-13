@@ -68,6 +68,14 @@ public class RestaurantLikeService {
         rt.addLikes(rt.getLikes()+1);
 
         System.out.println("[후]R : " + rt.getRestaurant_name() + " " + rt.getLikes());
+
+        List<RestaurantLike> likelist = repo.findAll();
+        for(RestaurantLike l : likelist){
+            if(l.getUser_id().equals(user_id) && l.getRestaurant_id().equals(newdto.getRestaurant_id())){
+                return false;
+            }
+        }
+
         repo.save(newdto);
         return true;
     }

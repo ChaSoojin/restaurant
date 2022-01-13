@@ -32,6 +32,7 @@
         <button type="submit" id="search" name="search" style="margin:0px 30px;" onclick="search()">검색</button>
     </div>
 
+    <br><br>
     <div id="restList" >
         <div style="height:400px; display:block; justify-content: center; align-items: center; font-size: 2em;">
 <%--            <div style=" display:block; justify-content: center; align-items: center; font-size: 2em; ">--%>

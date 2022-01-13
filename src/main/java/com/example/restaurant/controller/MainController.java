@@ -1,6 +1,7 @@
 package com.example.restaurant.controller;
 
 import com.example.restaurant.domain.Restaurant;
+import com.example.restaurant.domain.RestaurantLike;
 import com.example.restaurant.domain.RestaurantLikeRequestDto;
 import com.example.restaurant.service.ReviewService;
 import com.example.restaurant.service.UserService;
@@ -128,6 +129,7 @@ public class MainController {
         return reserveController.reserveData(formdata, request, response);
     }
 
+    //식당 찜한 목록 조회 페이지
     @GetMapping("/restaurantLike")
     public String restaurantLike(HttpServletRequest request){
         HttpSession session = request.getSession();
@@ -136,6 +138,9 @@ public class MainController {
         if(user_id == null){
             return "user/login";
         }
+
+        List<RestaurantLike> likelist = restaurantLikeController.checkMyLikes(request);
+        request.setAttribute("likelist", likelist);
 
         return "restaurant/restaurantLikeList";
     }
@@ -154,6 +159,7 @@ public class MainController {
     public String myRestaurantLike(HttpServletRequest request){
         HttpSession session = request.getSession();
         String user_id = (String)session.getAttribute("log");
+
 
         if(user_id == null){
             return "user/login";
