@@ -12,10 +12,14 @@
     }
     .container {
         display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        width:100%;
+        gap: 20px;
     }
 </style>
 
-<section class="breadcrumbs-custom bg-image" style="background-image: url(logo.png);">
+<section class="breadcrumbs-custom bg-image" style="background-image: url('/images/bg-image-1.jpg');">
     <div class="breadcrumbs-custom-inner">
         <div class="breadcrumbs-custom-container container">
             <div class="breadcrumbs-custom-main">
@@ -29,7 +33,7 @@
 <section class="section section-lg">
     <div class="container">
         <div class="row">
-<%--            <div class="col-sm-10 col-md-9 col-lg-6 col-xl-5">--%> <%-- 이거 삭제하니까 쫙 펴짐 --%>
+            <div class="col-sm-10 col-md-9 col-lg-6 col-xl-5">
                 <h6>OwnerPage</h6>
 
                 <!-- Bootstrap tabs -->
@@ -105,7 +109,7 @@
                                     <br><br>
                                 </c:otherwise>
                             </c:choose>
-                            <div id="map" style="width:1000px;height:500px; display:inline-block;"></div>
+                            <div id="map" style="width:400px;height:300px; display:inline-block;"></div>
                             <script src="script/restaurantMap.js"></script>
 
 
@@ -205,7 +209,7 @@
                         </div>
                     </div>
                 </div>
-<%--            </div>--%>
+            </div>
         </div>
     </div>
 </section>

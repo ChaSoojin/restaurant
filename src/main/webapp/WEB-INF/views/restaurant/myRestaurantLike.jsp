@@ -4,7 +4,6 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
 <c:import url="/WEB-INF/views/layout/header.jsp"/>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,6 +14,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <title>Restaurant Detail</title>
 </head>
+
+<section class="breadcrumbs-custom bg-image"
+         style="background-image: url('/images/bg-image-1.jpg');">
+    <div class="breadcrumbs-custom-inner">
+        <div class="breadcrumbs-custom-container container">
+            <div class="breadcrumbs-custom-main">
+                <h6 class="breadcrumbs-custom-subtitle title-decorated" style="color:white;">우리동네 맛집 찜하기</h6>
+                <h1 class="breadcrumbs-custom-title" style="color:white;">내가 찜한 목록</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
 <body>
 <div class="container" style="margin-top : 30px;">
     <div class="row container-board-padding" style="display: flex; justify-content: center;">

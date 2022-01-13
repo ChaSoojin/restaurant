@@ -60,6 +60,19 @@
     </style>
     <title>Restaurant Like</title>
 </head>
+
+<section class="breadcrumbs-custom bg-image"
+         style="background-image: url('/images/bg-image-1.jpg');">
+    <div class="breadcrumbs-custom-inner">
+        <div class="breadcrumbs-custom-container container">
+            <div class="breadcrumbs-custom-main">
+                <h6 class="breadcrumbs-custom-subtitle title-decorated" style="color:white;">우리동네 맛집 찜하기</h6>
+                <h1 class="breadcrumbs-custom-title" style="color:white;">맛집 찜하기</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
 <body>
 <div style="text-align:center; margin: 50px 0px;">
 

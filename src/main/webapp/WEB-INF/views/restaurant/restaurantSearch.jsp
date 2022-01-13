@@ -3,7 +3,7 @@
 <c:import url="/WEB-INF/views/layout/header.jsp"/>
 
 <section class="breadcrumbs-custom bg-image"
-         style="background-image: url(https://previews.123rf.com/images/meysye/meysye1704/meysye170400003/75333093-set-of-cute-food-doodle.jpg?fj=1);">
+         style="background-image: url('/images/bg-image-1.jpg');">
     <div class="breadcrumbs-custom-inner">
         <div class="breadcrumbs-custom-container container">
             <div class="breadcrumbs-custom-main">
@@ -24,7 +24,7 @@
     <div style="text-align:center; margin: 50px 0px; ">
 
 <%--    <div id="map" style="width:70%; height:70%; display:inline-block;"></div>--%>
-    <div id="map" style="width:1000px; height:500px; display:inline-block;"></div>
+    <div id="map" style="width:700px; height:300px; display:inline-block;"></div>
     <br><br><br>
 
     <div style="display: inline-block; border-bottom: 1px solid black; padding-bottom: 30px; margin-bottom : 20px;  ">
