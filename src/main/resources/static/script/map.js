@@ -12,6 +12,30 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 // 지도생성
 var map = new kakao.maps.Map(mapContainer, mapOption);
 
+// if($(window).width() >= 1000){
+//     var width = 1000;
+// }else{
+//     var width = $(".article").width() - 40;
+// }
+// $("#daumRoughmapContainer1539222712876").css({"width":width ,"margin":"0 auto"})
+// $(window).resize(function () {
+//     if($(window).width() >= 1000){
+//         var width = 1000;
+//     }
+//     else{
+//         var width = $(".article").width() - 40;
+//     }
+//     $("#daumRoughmapContainer1539222712876").css({"width":width ,"margin":"0 auto"})
+// });
+// new daum.roughmap.Lander({
+//     "timestamp" : "1539222712876",
+//     "key" : "qcnc",
+//     "mapWidth" : width,
+//     "mapHeight" : "350"
+// }).render();
+
+
+
 function locationLoadSuccess(pos){
     // 현재 위치 받아오기
     var currentPos = new kakao.maps.LatLng(pos.coords.latitude,pos.coords.longitude);
