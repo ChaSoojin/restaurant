@@ -1,5 +1,6 @@
 package com.example.restaurant.controller;
 
+import com.example.restaurant.domain.Restaurant;
 import com.example.restaurant.domain.RestaurantLikeRequestDto;
 import com.example.restaurant.service.ReviewService;
 import com.example.restaurant.service.UserService;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @RequiredArgsConstructor
@@ -141,7 +143,9 @@ public class MainController {
     //식당 찜하기
     @PostMapping("/like")
     public String addLike(@RequestBody RestaurantLikeRequestDto dto, HttpServletRequest request){
-        controller.addRestaurant(dto);
+        Restaurant r = controller.addRestaurant(dto);
+
+        request.setAttribute("restaurant", r);
         return restaurantLikeController.addLike(dto, request);
     }
 
@@ -161,10 +165,9 @@ public class MainController {
     //식당 찜하기 취소
     @GetMapping("/myLikeDelete")
     public String likeDelete(@RequestParam String restaurant_id, HttpServletRequest request){
+        System.out.println("삭제할 ID: " + restaurant_id);
         return restaurantLikeController.cancelLike(restaurant_id, request);
     }
-
-
 
     //----Review----
 

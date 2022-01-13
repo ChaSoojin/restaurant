@@ -15,7 +15,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RestaurantLikeService {
     private final RestaurantLikeRepository repo;
-    
+    private final RestaurantRepository repo2;
+
     //내가 찜한 레스토랑 목록 조회 
     public List<RestaurantLike> getLike(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -33,6 +34,19 @@ public class RestaurantLikeService {
         return result;
     }
 
+    public boolean checkLike(RestaurantLikeRequestDto dto, HttpServletRequest request){
+        List<RestaurantLike> list = repo.findAll();
+        HttpSession session = request.getSession();
+        String user_id = (String) session.getAttribute("log");
+
+        for(RestaurantLike like : list){
+            if(like.getRestaurant_id().equals(dto.getRestaurant_id()) && like.getUser_id().equals(user_id)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     //식당 찜하기
     public boolean addLike(RestaurantLikeRequestDto dto, HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -41,6 +55,19 @@ public class RestaurantLikeService {
         RestaurantLikeRequestDto tmpdto = new RestaurantLikeRequestDto(dto.getRestaurant_id(), user_id, dto.getRestaurant_name(), dto.getPhone(), dto.getAddress(), dto.getX(), dto.getY());
         RestaurantLike newdto = new RestaurantLike(tmpdto);
 
+        List<Restaurant> list = repo2.findAll();
+        Restaurant rt = new Restaurant();
+
+        for(Restaurant r : list){
+            if(r.getRestaurant_id().equals(newdto.getRestaurant_id())){
+                rt = r;
+                break;
+            }
+        }
+        System.out.println("[전]R : " + rt.getRestaurant_name() + " " + rt.getLikes());
+        rt.addLikes(rt.getLikes()+1);
+
+        System.out.println("[후]R : " + rt.getRestaurant_name() + " " + rt.getLikes());
         repo.save(newdto);
         return true;
     }

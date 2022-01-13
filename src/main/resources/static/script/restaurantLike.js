@@ -1,4 +1,5 @@
 let tmpKeyWord = "";
+let cnt = 0;
 
 function restaurantSearch(){
     $.ajax({
@@ -47,6 +48,9 @@ function restaurantSearch(){
                 $(content).append("<input type='hidden' value='" + data.documents[i].x + "'>");
                 $(content).append("<input type='hidden' value='" + data.documents[i].y + "'>");
                 $(content).append("<h5 id='x'>" + data.documents[i].x + "</h5>");
+
+                /*console.log(checkData(data.documents[i]));*/
+
                 $(content).append("<img src='like/default_like.png' id='likeimg" + num + "' width='50' height='50' onclick='javascript:saveData(" + num + ")' style='cursor: pointer'>");
 
                 console.log(i + ","+data.documents[i].id);
@@ -56,6 +60,23 @@ function restaurantSearch(){
 
             $("#restList").html("");
         })
+}
+function checkData(datas){
+    $.ajax({
+        type : 'POST',
+        url : "/checklikes",
+        contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+        dataType : "json",
+        data : {'restaurant_id': datas.id, 'restaurant_name': datas.place_name, 'phone' : datas.phone, 'x' : datas.x, 'y' : datas.y, 'address' : datas.address_name},
+        success : function(data) {
+            if(data.proc == "success") {
+                console.log("체크완료")
+            }
+        },
+        error : function(xhr, status, error) {
+            console.log("에러발생");
+        }
+    });
 }
 
 function enterkey() {
@@ -89,22 +110,50 @@ function saveData(num){
         "y" : y,
         "address" : str3
     }
-    $.ajax({
-        method : 'POST',
-        url : "/like",
-        contentType : "application/json",
-        dataType : "json",
-        data : JSON.stringify(dataStr),
-        success : function(data) {
-            // if(data.proc == "success") {
-            //     console.log("DB 저장완료")
-            // }
-        },
-        error : function(xhr, status, error) {
-            console.log("에러발생");
-        }
-    });
 
-    document.getElementById('likeimg' + num).src = 'like/like.png'
+    if(cnt == 0){
+        cnt += 1;
+
+        $.ajax({
+            method : 'POST',
+            url : "/like",
+            contentType : "application/json",
+            dataType : "json",
+            data : JSON.stringify(dataStr),
+            success : function(data) {
+                // if(data.proc == "success") {
+                //     console.log("DB 저장완료")
+                // }
+            },
+            error : function(xhr, status, error) {
+                console.log("에러발생");
+            }
+        });
+
+        document.getElementById('likeimg' + num).src = 'like/like.png'
+    }
+
+    else{
+        $.ajax({
+            method : 'GET',
+            url : "/myLikeDelete",
+            contentType : "application/json",
+            dataType : "json",
+            data : {'restaurant_id': str1},
+            success : function(data) {
+                // if(data.proc == "success") {
+                //     console.log("DB 저장완료")
+                // }
+            },
+            error : function(xhr, status, error) {
+                console.log("에러발생");
+            }
+        });
+
+
+        document.getElementById('likeimg' + num).src = 'like/default_like.png'
+        cnt = 0;
+    }
+
     location.href="#";
 }

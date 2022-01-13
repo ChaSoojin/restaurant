@@ -40,4 +40,9 @@ public class Restaurant extends Timestamped {
     public void update(RestaurantRequestDto dto){
         this.user_id = dto.getUser_id();
     }
+
+    //찜하기 업데이트
+    public void addLikes(int likes){
+        this.likes = likes;
+    }
 }

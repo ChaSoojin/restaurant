@@ -6,13 +6,13 @@ import com.example.restaurant.domain.RestaurantLikeRequestDto;
 import com.example.restaurant.service.RestaurantLikeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RestController
@@ -29,6 +29,24 @@ public class RestaurantLikeController {
 
         return "restaurant/myRestaurantLike";
     }
+
+    //찜한 목록인지 체크
+    @PostMapping("/checklikes")
+    public Map<String, String>  checkMyLikes(@RequestBody RestaurantLikeRequestDto dto, HttpServletRequest request){
+        Map<String, String> map = new HashMap<>();
+
+        if(service.checkLike(dto, request)){
+            System.out.println("찜한 목록 중 존재..");
+            map.put("proc", "success");
+        }
+        else{
+            System.out.println("찜 목록에 없음!");
+            map.put("proc", "fail");
+        }
+
+        return map;
+    }
+
 
     //식당 찜하기
     public String addLike(@RequestBody RestaurantLikeRequestDto dto, HttpServletRequest request){
